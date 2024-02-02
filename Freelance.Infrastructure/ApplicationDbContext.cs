@@ -15,7 +15,7 @@ public class ApplicationDbContext : IdentityDbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
-        //SeedRoles(modelBuilder);
+        SeedRoles(modelBuilder);
        
     }
 
