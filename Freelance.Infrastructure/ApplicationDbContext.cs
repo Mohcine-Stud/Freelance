@@ -2,8 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Reflection.Emit;
+
 
 namespace Freelance.Infrastructure;
 
@@ -16,7 +15,7 @@ public class ApplicationDbContext : IdentityDbContext
     {
         base.OnModelCreating(modelBuilder);
         SeedRoles(modelBuilder);
-       
+
     }
 
     public virtual DbSet<Competence> Competences { get; set; }
