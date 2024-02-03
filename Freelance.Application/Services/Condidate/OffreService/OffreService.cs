@@ -1,15 +1,15 @@
-﻿using Freelance.Application.ViewModels.DTOs.EntrepriseDTO;
+﻿using Freelance.Application.ViewModels.DTOs.OffreDTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Freelance.Application.Services.Entreprise.EntrepriseService;
+namespace Freelance.Application.Services.Condidate.OffreService;
 
-public class EntrepriseService : IEntrepriseService
+internal class OffreService : IOffreService
 {
-    public Task<EntrepriseDTO> CreateAsync(EntrepriseCreateDTO entity)
+    public Task<OffreDTO> CreateAsync(OffreCreateDTO entity)
     {
         throw new NotImplementedException();
     }
@@ -19,17 +19,17 @@ public class EntrepriseService : IEntrepriseService
         throw new NotImplementedException();
     }
 
-    public Task<List<EntrepriseDTO>> FindAllAsync()
+    public Task<List<OffreDTO>> FindAllAsync()
     {
         throw new NotImplementedException();
     }
 
-    public Task<EntrepriseDTO> FindByIdAsync(int id)
+    public Task<OffreDTO> FindByIdAsync(int id)
     {
         throw new NotImplementedException();
     }
 
-    public Task<EntrepriseDTO> UpdateAsync(int id, EntrepriseUpdateDTO entity)
+    public Task<OffreDTO> UpdateAsync(int id, OffreUpdateDTO entity)
     {
         throw new NotImplementedException();
     }

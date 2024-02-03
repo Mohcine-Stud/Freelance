@@ -1,15 +1,15 @@
-﻿using Freelance.Application.ViewModels.DTOs.EntrepriseDTO;
+﻿using Freelance.Application.ViewModels.DTOs.CompetenceDTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Freelance.Application.Services.Entreprise.EntrepriseService;
+namespace Freelance.Application.Services.Condidate.CompetenceService;
 
-public class EntrepriseService : IEntrepriseService
+internal class CompetenceService : ICompetenceService
 {
-    public Task<EntrepriseDTO> CreateAsync(EntrepriseCreateDTO entity)
+    public Task<CompetenceDTO> CreateAsync(CompetenceCreateDTO entity)
     {
         throw new NotImplementedException();
     }
@@ -19,17 +19,17 @@ public class EntrepriseService : IEntrepriseService
         throw new NotImplementedException();
     }
 
-    public Task<List<EntrepriseDTO>> FindAllAsync()
+    public Task<List<CompetenceDTO>> FindAllAsync()
     {
         throw new NotImplementedException();
     }
 
-    public Task<EntrepriseDTO> FindByIdAsync(int id)
+    public Task<CompetenceDTO> FindByIdAsync(int id)
     {
         throw new NotImplementedException();
     }
 
-    public Task<EntrepriseDTO> UpdateAsync(int id, EntrepriseUpdateDTO entity)
+    public Task<CompetenceDTO> UpdateAsync(int id, CompetenceUpdateDTO entity)
     {
         throw new NotImplementedException();
     }

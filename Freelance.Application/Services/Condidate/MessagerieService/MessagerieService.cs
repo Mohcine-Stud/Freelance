@@ -1,15 +1,15 @@
-﻿using Freelance.Application.ViewModels.DTOs.EntrepriseDTO;
+﻿using Freelance.Application.ViewModels.DTOs.MessagerieDTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Freelance.Application.Services.Entreprise.EntrepriseService;
+namespace Freelance.Application.Services.Condidate.MessagerieService;
 
-public class EntrepriseService : IEntrepriseService
+internal class MessagerieService : IMessagerieService
 {
-    public Task<EntrepriseDTO> CreateAsync(EntrepriseCreateDTO entity)
+    public Task<MessagerieDTO> CreateAsync(MessagerieCreateDTO entity)
     {
         throw new NotImplementedException();
     }
@@ -19,17 +19,17 @@ public class EntrepriseService : IEntrepriseService
         throw new NotImplementedException();
     }
 
-    public Task<List<EntrepriseDTO>> FindAllAsync()
+    public Task<List<MessagerieDTO>> FindAllAsync()
     {
         throw new NotImplementedException();
     }
 
-    public Task<EntrepriseDTO> FindByIdAsync(int id)
+    public Task<MessagerieDTO> FindByIdAsync(int id)
     {
         throw new NotImplementedException();
     }
 
-    public Task<EntrepriseDTO> UpdateAsync(int id, EntrepriseUpdateDTO entity)
+    public Task<MessagerieDTO> UpdateAsync(int id, MessagerieUpdateDTO entity)
     {
         throw new NotImplementedException();
     }

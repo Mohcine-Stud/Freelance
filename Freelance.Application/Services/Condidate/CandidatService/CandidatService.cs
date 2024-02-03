@@ -9,6 +9,12 @@ using System.Threading.Tasks;
 
 public class CandidatService : ICondidateService
 {
+
+    public CandidatService()
+    {
+
+    }
+
     public Task<CandidatDTO> CreateAsync(CandidatCreateDTO entity)
     {
         throw new NotImplementedException();
