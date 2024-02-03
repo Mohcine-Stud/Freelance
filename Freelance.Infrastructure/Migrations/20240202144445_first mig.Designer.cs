@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Freelance.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240202135406_seedRoles")]
-    partial class seedRoles
+    [Migration("20240202144445_first mig")]
+    partial class firstmig
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -444,21 +444,21 @@ namespace Freelance.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "1f953a31-9a35-411c-aae4-d0addf613589",
+                            Id = "ffd3b9c5-3583-4023-bc97-5a1715e33cd4",
                             ConcurrencyStamp = "1",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "9c367399-67cd-4f32-9a9a-61a6dabf22e8",
+                            Id = "a8e51ebb-2c16-4f26-9b92-d6c4c3143d8f",
                             ConcurrencyStamp = "2",
                             Name = "Candidat",
                             NormalizedName = "CANDIDAT"
                         },
                         new
                         {
-                            Id = "febffc17-85ea-4b9d-b0cf-b81a76723ca0",
+                            Id = "1ee05546-baa0-42c8-ba92-a0dc04cb5c6e",
                             ConcurrencyStamp = "3",
                             Name = "Entreprise",
                             NormalizedName = "ENTREPRISE"
