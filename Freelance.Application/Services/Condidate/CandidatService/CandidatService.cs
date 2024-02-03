@@ -1,13 +1,13 @@
-﻿using Freelance.Application.ViewModels.DTOs.CondidateDTO;
+﻿using Freelance.Application.Services.Condidate.Candidat;
+using Freelance.Application.ViewModels.DTOs.CondidateDTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Freelance.Application.Services.Condidate.Candidat;
 
-public class Candidat : ICondidate
+public class CandidatService : ICondidateService
 {
     public Task<CandidatDTO> CreateAsync(CandidatCreateDTO entity)
     {
