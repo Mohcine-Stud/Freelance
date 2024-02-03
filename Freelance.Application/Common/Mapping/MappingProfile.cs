@@ -16,7 +16,6 @@ using Freelance.Application.ViewModels.DTOs.FormationDTO;
 using Freelance.Application.ViewModels.DTOs.MessagerieDTO;
 using Freelance.Application.ViewModels.DTOs.OffreDTO;
 using Freelance.Application.ViewModels.DTOs.ProjetDTO;
-using Freelance.Application.ViewModels.DTOs.UserDTO;
 using System;
 
 namespace Freelance.Application.Common.Mapping;
@@ -89,11 +88,5 @@ public class MappingProfile : Profile
         CreateMap<Projet, ProjetDTO>().ReverseMap();
         CreateMap<Projet, ProjetUpdateDTO>().ReverseMap();
         CreateMap<Projet, ProjetCreateDTO>().ReverseMap();
-
-        // User
-        CreateMap<User, UserDTO>().ReverseMap();
-        CreateMap<User, UserUpdateDTO>().ReverseMap();
-        CreateMap<User, UserCreateDTO>().ReverseMap();
-
     }
 }
