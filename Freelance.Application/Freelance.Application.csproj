@@ -7,6 +7,12 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Compile Remove="Condidat\**" />
+	  <EmbeddedResource Remove="Condidat\**" />
+	  <None Remove="Condidat\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="AutoMapper" Version="12.0.1" />
 		<PackageReference Include="MediatR" Version="11.0.0" />
 		<PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
@@ -21,11 +27,5 @@
 	<ItemGroup>
 		<ProjectReference Include="..\Freelance.Domain\Freelance.Domain.csproj" />
 	</ItemGroup>
-
-
-
-  <ItemGroup>
-    <Folder Include="Condidat\" />
-  </ItemGroup>
 
 </Project>
