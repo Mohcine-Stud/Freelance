@@ -22,4 +22,10 @@
 		<ProjectReference Include="..\Freelance.Domain\Freelance.Domain.csproj" />
 	</ItemGroup>
 
+
+
+  <ItemGroup>
+    <Folder Include="Condidat\" />
+  </ItemGroup>
+
 </Project>
