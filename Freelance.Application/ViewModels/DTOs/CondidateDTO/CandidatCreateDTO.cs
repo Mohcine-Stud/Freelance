@@ -1,11 +1,9 @@
 ﻿using Freelance.Domain.Models;
 
-namespace Freelance.Application.ViewModels.DTOs.CandidateDTO;
+namespace Freelance.Application.ViewModels.DTOs.CondidateDTO;
 
-public partial class CandidatDTO
+public partial class CandidatCreateDTO
 {
-    public int Id { get; set; }
-
     public string? Titre { get; set; }
 
     public string? Avatar { get; set; }

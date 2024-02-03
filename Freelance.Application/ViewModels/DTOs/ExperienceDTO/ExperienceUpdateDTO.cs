@@ -1,12 +1,14 @@
-﻿namespace Freelance.Domain.Models;
+﻿using Freelance.Domain.Models;
 
-public partial class Formation
+namespace Freelance.Application.ViewModels.DTOs.ExperienceDTO;
+
+public partial class ExperienceUpdateDTO
 {
     public int Id { get; set; }
 
-    public string? Niveau { get; set; }
+    public string? Titre { get; set; }
 
-    public string? Ecole { get; set; }
+    public string? Local { get; set; }
 
     public string? Description { get; set; }
 
@@ -17,7 +19,5 @@ public partial class Formation
     public DateTime? DateFin { get; set; }
 
     public int? IdCondidat { get; set; }
-
-    public virtual Candidat? IdCondidatNavigation { get; set; }
 
 }

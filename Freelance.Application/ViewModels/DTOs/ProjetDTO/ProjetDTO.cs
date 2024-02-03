@@ -1,6 +1,8 @@
-﻿namespace Freelance.Domain.Models;
+﻿using Freelance.Domain.Models;
 
-public partial class Projet
+namespace Freelance.Application.ViewModels.DTOs.ProjetDTO;
+
+public partial class ProjetDTO
 {
     public int Id { get; set; }
 
@@ -9,6 +11,4 @@ public partial class Projet
     public string? Description { get; set; }
 
     public int? IdCondidat { get; set; }
-
-    public virtual Candidat? IdCondidatNavigation { get; set; }
 }

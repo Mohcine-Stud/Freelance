@@ -1,6 +1,8 @@
-﻿namespace Freelance.Domain.Models;
+﻿using Freelance.Domain.Models;
 
-public partial class Messagerie
+namespace Freelance.Application.ViewModels.DTOs.MessagerieDTO;
+
+public partial class MessagerieDTO
 {
     public int Id { get; set; }
 
@@ -11,8 +13,4 @@ public partial class Messagerie
     public string? Msg { get; set; }
 
     public DateTime? DateMsg { get; set; }
-
-    public virtual Candidat? Expediteur { get; set; }
-
-    public virtual Entreprise? ExpediteurNavigation { get; set; }
 }

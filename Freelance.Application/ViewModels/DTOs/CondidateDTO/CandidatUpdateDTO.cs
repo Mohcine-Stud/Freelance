@@ -1,6 +1,6 @@
 ﻿using Freelance.Domain.Models;
 
-namespace Freelance.Application.ViewModels.DTOs.CandidateDTO;
+namespace Freelance.Application.ViewModels.DTOs.CondidateDTO;
 
 public partial class CandidatUpdateDTO
 {
