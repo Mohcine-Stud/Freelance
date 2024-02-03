@@ -22,47 +22,4 @@
 		<ProjectReference Include="..\Freelance.Domain\Freelance.Domain.csproj" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="Entreprise\Condidate - Copy %282%29\Commands\" />
-	  <Folder Include="Entreprise\Condidate - Copy %282%29\Queries\" />
-	  <Folder Include="Entreprise\Condidate - Copy %283%29\Commands\" />
-	  <Folder Include="Entreprise\Condidate - Copy %283%29\Queries\" />
-	  <Folder Include="Entreprise\Condidate - Copy %284%29\Commands\" />
-	  <Folder Include="Entreprise\Condidate - Copy %284%29\Queries\" />
-	  <Folder Include="Entreprise\Condidate - Copy %285%29\Commands\" />
-	  <Folder Include="Entreprise\Condidate - Copy %285%29\Queries\" />
-	  <Folder Include="Entreprise\Condidate - Copy %286%29\Commands\" />
-	  <Folder Include="Entreprise\Condidate - Copy %286%29\Queries\" />
-	  <Folder Include="Entreprise\Condidate - Copy %287%29\Commands\" />
-	  <Folder Include="Entreprise\Condidate - Copy %287%29\Queries\" />
-	  <Folder Include="Entreprise\Condidate - Copy %288%29\Commands\" />
-	  <Folder Include="Entreprise\Condidate - Copy %288%29\Queries\" />
-	  <Folder Include="Entreprise\Condidate - Copy %289%29\Commands\" />
-	  <Folder Include="Entreprise\Condidate - Copy %289%29\Queries\" />
-	  <Folder Include="Entreprise\Condidate - Copy\Commands\" />
-	  <Folder Include="Entreprise\Condidate - Copy\Queries\" />
-	  <Folder Include="Entreprise\Condidate\Commands\" />
-	  <Folder Include="Entreprise\Condidate\Queries\" />
-	  <Folder Include="Condidate\Condidate - Copy %282%29\Commands\" />
-	  <Folder Include="Condidate\Condidate - Copy %282%29\Queries\" />
-	  <Folder Include="Condidate\Condidate - Copy %283%29\Commands\" />
-	  <Folder Include="Condidate\Condidate - Copy %283%29\Queries\" />
-	  <Folder Include="Condidate\Condidate - Copy %284%29\Commands\" />
-	  <Folder Include="Condidate\Condidate - Copy %284%29\Queries\" />
-	  <Folder Include="Condidate\Condidate - Copy %285%29\Commands\" />
-	  <Folder Include="Condidate\Condidate - Copy %285%29\Queries\" />
-	  <Folder Include="Condidate\Condidate - Copy %286%29\Commands\" />
-	  <Folder Include="Condidate\Condidate - Copy %286%29\Queries\" />
-	  <Folder Include="Condidate\Condidate - Copy %287%29\Commands\" />
-	  <Folder Include="Condidate\Condidate - Copy %287%29\Queries\" />
-	  <Folder Include="Condidate\Condidate - Copy %288%29\Commands\" />
-	  <Folder Include="Condidate\Condidate - Copy %288%29\Queries\" />
-	  <Folder Include="Condidate\Condidate - Copy %289%29\Commands\" />
-	  <Folder Include="Condidate\Condidate - Copy %289%29\Queries\" />
-	  <Folder Include="Condidate\Condidate - Copy\Commands\" />
-	  <Folder Include="Condidate\Condidate - Copy\Queries\" />
-	  <Folder Include="Condidate\Condidate\Commands\" />
-	  <Folder Include="Condidate\Condidate\Queries\" />
-	</ItemGroup>
-
 </Project>
