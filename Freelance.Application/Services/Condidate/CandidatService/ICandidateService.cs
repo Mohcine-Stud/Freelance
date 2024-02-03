@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Freelance.Application.Services.Condidate.Candidat;
 
-public interface ICondidateService
+public interface ICandidateService
 {
     Task<CandidatDTO> FindByIdAsync(int id);
     Task<List<CandidatDTO>> FindAllAsync();
