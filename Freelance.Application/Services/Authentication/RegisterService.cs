@@ -1,7 +1,6 @@
 ﻿using Freelance.Application.Authentication.Commands.Register;
 using Freelance.Application.Authentication.Common.Interfaces;
 using Freelance.Application.ViewModels.Authentication;
-using Freelance.Application.ViewModels.DTOs.UserDTO;
 using Freelance.Domain.Models;
 using Microsoft.AspNetCore.Identity;
 using System.Data;
