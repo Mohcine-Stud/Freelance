@@ -1,9 +1,19 @@
-﻿using Freelance.Domain.Models;
+﻿using Freelance.Application.ViewModels.DTOs.CompeteceDmExpertiseDTO;
+using Freelance.Application.ViewModels.DTOs.CompetenceOffreDTO;
+using Freelance.Application.ViewModels.DTOs.CondidatCompDTO;
+using Freelance.Application.ViewModels.DTOs.ConsultaionProfilDTO;
+using Freelance.Application.ViewModels.DTOs.DomaineExpertise;
+using Freelance.Application.ViewModels.DTOs.EntrepriseDTO;
+using Freelance.Application.ViewModels.DTOs.ExperienceDTO;
+using Freelance.Application.ViewModels.DTOs.FormationDTO;
+using Freelance.Application.ViewModels.DTOs.MessagerieDTO;
+using Freelance.Application.ViewModels.DTOs.OffreDTO;
+using Freelance.Application.ViewModels.DTOs.ProjetDTO;
+using Freelance.Domain.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Reflection.Emit;
+
 
 namespace Freelance.Infrastructure;
 
@@ -16,7 +26,7 @@ public class ApplicationDbContext : IdentityDbContext
     {
         base.OnModelCreating(modelBuilder);
         SeedRoles(modelBuilder);
-       
+
     }
 
     public virtual DbSet<Competence> Competences { get; set; }

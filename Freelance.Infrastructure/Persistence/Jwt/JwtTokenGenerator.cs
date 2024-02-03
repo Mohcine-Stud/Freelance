@@ -1,4 +1,5 @@
 ﻿using Freelance.Application.Authentication.Common.Interfaces;
+using Freelance.Application.ViewModels.DTOs.UserDTO;
 using Freelance.Domain.Models;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
