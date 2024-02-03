@@ -441,21 +441,21 @@ namespace Freelance.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "1f953a31-9a35-411c-aae4-d0addf613589",
+                            Id = "80e96366-3957-4fd4-9952-cc6956e809bd",
                             ConcurrencyStamp = "1",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "9c367399-67cd-4f32-9a9a-61a6dabf22e8",
+                            Id = "31aad63a-c145-44c3-8a7b-02bbb23e8f2d",
                             ConcurrencyStamp = "2",
                             Name = "Candidat",
                             NormalizedName = "CANDIDAT"
                         },
                         new
                         {
-                            Id = "febffc17-85ea-4b9d-b0cf-b81a76723ca0",
+                            Id = "1e665137-11ab-431c-b3da-51dee193b026",
                             ConcurrencyStamp = "3",
                             Name = "Entreprise",
                             NormalizedName = "ENTREPRISE"
