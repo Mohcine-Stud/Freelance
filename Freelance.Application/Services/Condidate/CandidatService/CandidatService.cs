@@ -1,5 +1,8 @@
-﻿using Freelance.Application.Services.Condidate.Candidat;
+﻿using AutoMapper;
+using Freelance.Application.Persistence.IRepositories;
+using Freelance.Application.Services.Condidate.Candidat;
 using Freelance.Application.ViewModels.DTOs.CondidateDTO;
+using Freelance.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,33 +13,55 @@ using System.Threading.Tasks;
 public class CandidatService : ICondidateService
 {
 
-    public CandidatService()
-    {
+    private readonly IGenericRepository<Candidat> _condidateRepository;
+    private readonly IMapper _mapper;
 
+    public CandidatService(IGenericRepository<Candidat> condidateRepository, IMapper mapper)
+    {
+        _condidateRepository = condidateRepository;
+        _mapper = mapper;
     }
 
-    public Task<CandidatDTO> CreateAsync(CandidatCreateDTO entity)
+    public async Task<CandidatDTO> FindByIdAsync(int id)
     {
-        throw new NotImplementedException();
+        var candidat = await _condidateRepository.GetAsync(id);
+        return _mapper.Map<CandidatDTO>(candidat);
     }
 
-    public Task DeleteAsync(int id)
+    public async Task<List<CandidatDTO>> FindAllAsync()
     {
-        throw new NotImplementedException();
+        var candidat = await _condidateRepository.GetAllAsync();
+        return _mapper.Map<List<CandidatDTO>>(candidat);
     }
 
-    public Task<List<CandidatDTO>> FindAllAsync()
+    public async Task<CandidatDTO> CreateAsync(CandidatCreateDTO entity)
     {
-        throw new NotImplementedException();
+        var candidat = _mapper.Map<Candidat>(entity);
+        var createdCandidat = await _condidateRepository.PostAsync(candidat);
+        return _mapper.Map<CandidatDTO>(createdCandidat);
     }
 
-    public Task<CandidatDTO> FindByIdAsync(int id)
+    public async Task<CandidatDTO> UpdateAsync(int id, CandidatUpdateDTO entity)
     {
-        throw new NotImplementedException();
+        var existingCandidat = await _condidateRepository.GetAsync(id);
+        if (existingCandidat == null)
+        {
+            return null;
+        }
+
+        _mapper.Map(entity, existingCandidat);
+        await _condidateRepository.PutAsync(id, existingCandidat);
+        return _mapper.Map<CandidatDTO>(existingCandidat);
     }
 
-    public Task<CandidatDTO> UpdateAsync(int id, CandidatUpdateDTO entity)
+    public async Task DeleteAsync(int id)
     {
-        throw new NotImplementedException();
+        var existingCandidat = await _condidateRepository.GetAsync(id);
+        if (existingCandidat == null)
+        {
+            return;
+        }
+
+        await _condidateRepository.DeleteAsync(id);
     }
 }
