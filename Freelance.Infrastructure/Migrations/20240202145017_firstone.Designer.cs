@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Freelance.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240202135118_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20240202145017_firstone")]
+    partial class firstone
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -440,6 +440,29 @@ namespace Freelance.Infrastructure.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "80e96366-3957-4fd4-9952-cc6956e809bd",
+                            ConcurrencyStamp = "1",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
+                        },
+                        new
+                        {
+                            Id = "31aad63a-c145-44c3-8a7b-02bbb23e8f2d",
+                            ConcurrencyStamp = "2",
+                            Name = "Candidat",
+                            NormalizedName = "CANDIDAT"
+                        },
+                        new
+                        {
+                            Id = "1e665137-11ab-431c-b3da-51dee193b026",
+                            ConcurrencyStamp = "3",
+                            Name = "Entreprise",
+                            NormalizedName = "ENTREPRISE"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
