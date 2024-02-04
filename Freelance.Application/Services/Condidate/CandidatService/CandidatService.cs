@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-public class CandidatService : ICondidateService
+public class CandidatService : ICandidateService
 {
 
     private readonly IGenericRepository<Candidat> _condidateRepository;
