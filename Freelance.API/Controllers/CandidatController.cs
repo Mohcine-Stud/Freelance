@@ -1,4 +1,4 @@
-﻿using Freelance.Application.Services.Condidate.Candidat;
+﻿using Freelance.Application.Services.Condidate.CandidatService;
 using Freelance.Application.ViewModels.DTOs.CondidateDTO;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

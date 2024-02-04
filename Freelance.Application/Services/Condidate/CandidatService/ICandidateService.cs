@@ -1,6 +1,6 @@
 ﻿using Freelance.Application.ViewModels.DTOs.CondidateDTO;
 
-namespace Freelance.Application.Services.Condidate.Candidat;
+namespace Freelance.Application.Services.Condidate.CandidatService;
 
 public interface ICandidateService
 {

@@ -1,8 +1,10 @@
 ﻿using MediatR;
-using Freelance.Application.Services;
 using Microsoft.Extensions.DependencyInjection;
-using System.Reflection;
+using AutoMapper;
 using Freelance.Application.Services.Authentication;
+using Freelance.Application.Services.Condidate.CandidatService;
+using Freelance.Application.Persistence.IRepositories;
+using Freelance.Application.Common.Mapping;
 
 namespace Freelance.Application;
 
@@ -12,10 +14,11 @@ public static class DependencyInjection
     {
         services.AddMediatR(typeof(DependencyInjection).Assembly);
 
-      
-
         services.AddScoped<IAuthenticationService, AuthenticationService>();
 
+        services.AddScoped<IMapper, Mapper>();
+
+        services.AddScoped<ICandidateService, CandidatService>();
 
         return services;
     }

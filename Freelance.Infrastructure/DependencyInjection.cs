@@ -1,5 +1,7 @@
 ﻿using Freelance.Application.Authentication.Common.Interfaces;
+using Freelance.Application.Persistence.IRepositories;
 using Freelance.Infrastructure.Persistence.Jwt;
+using Freelance.Infrastructure.Persistence.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -26,6 +28,9 @@ public static class DependencyInjection
         //JwtSettings
         services.Configure<JwtSettings>(configuration.GetSection("JwtSettings"));
         services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
+
+        // Repos
+        services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
         return services;
     }
