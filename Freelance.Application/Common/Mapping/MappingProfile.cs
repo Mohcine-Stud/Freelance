@@ -27,9 +27,9 @@ public class MappingProfile : Profile
         CreateMap<ComptenceDmExpertise, ComptenceDmExpertiseCreateDTO>().ReverseMap();
 
         // Competence
-        CreateMap<Competence, CompetenceDTO>().ReverseMap();
-        CreateMap<Competence, CompetenceUpdateDTO>().ReverseMap();
-        CreateMap<Competence, CompetenceCreateDTO>().ReverseMap();
+        CreateMap<CompetenceDmExpertise, CompetenceDmExpetiseDTO>().ReverseMap();
+        CreateMap<CompetenceDmExpertise, CompetenceUpdateDTO>().ReverseMap();
+        CreateMap<CompetenceDmExpertise, CompetenceCreateDTO>().ReverseMap();
 
         //CompitenceOffer
         CreateMap<CompetenceOffre, CompetenceOffreDTO>().ReverseMap();

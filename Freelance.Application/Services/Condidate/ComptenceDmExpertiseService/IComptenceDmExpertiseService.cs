@@ -1,14 +1,8 @@
 ﻿using Freelance.Application.ViewModels.DTOs.CompeteceDmExpertiseDTO;
-using Freelance.Application.ViewModels.DTOs.CondidateDTO;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Freelance.Application.Services.Condidate.ComptenceDmExpertiseService;
 
-internal interface IComptenceDmExpertiseService
+public interface IComptenceDmExpertiseService
 {
     Task<ComptenceDmExpertiseDTO> FindByIdAsync(int id);
     Task<List<ComptenceDmExpertiseDTO>> FindAllAsync();
