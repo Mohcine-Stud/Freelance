@@ -16,6 +16,8 @@ public static class DependencyInjection
 
         services.AddScoped<IAuthenticationService, AuthenticationService>();
 
+        services.AddAutoMapper(typeof(MappingProfile));
+
         services.AddScoped<IMapper, Mapper>();
 
         services.AddScoped<ICandidateService, CandidatService>();

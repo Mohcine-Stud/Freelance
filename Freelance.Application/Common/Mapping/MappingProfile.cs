@@ -1,7 +1,4 @@
-﻿using Freelance.Application.Authentication.Commands.Register;
-using Freelance.Application.ViewModels.Authentication;
-using AutoMapper;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+﻿using AutoMapper;
 using Freelance.Domain.Models;
 using Freelance.Application.ViewModels.DTOs.CompeteceDmExpertiseDTO;
 using Freelance.Application.ViewModels.DTOs.CompetenceDTO;
