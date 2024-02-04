@@ -4,7 +4,7 @@ using MediatR;
 
 namespace Freelance.Application.Authentication.Commands.Register;
 
-public class RegisterEntrepriseCommandHandler : IRequestHandler<RegisterEntrepriseCommand, AuthenticationResponse>
+public class RegisterEntrepriseCommandHandler : IRequestHandler<RegisterEnrepriseCommand, AuthenticationResponse>
 {
     private readonly IAuthenticationService _authenticationservice;
 
@@ -13,7 +13,7 @@ public class RegisterEntrepriseCommandHandler : IRequestHandler<RegisterEntrepri
         _authenticationservice = authenticationService;
     }
 
-    public async Task<AuthenticationResponse> Handle(RegisterEntrepriseCommand command, CancellationToken cancellationToken)
+    public async Task<AuthenticationResponse> Handle(RegisterEnrepriseCommand command, CancellationToken cancellationToken)
     {
         var registerResult = await _authenticationservice.RegisterEntreprise(command);
 

@@ -3,7 +3,7 @@ using MediatR;
 
 namespace Freelance.Application.Authentication.Commands.Register;
 
-public record RegisterEntrepriseCommand(
+public record RegisterEnrepriseCommand(
     string EntrepriseName,
     string Email,
     string Password

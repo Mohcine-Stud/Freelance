@@ -58,7 +58,12 @@ public class AuthenticationService : IAuthenticationService
 
     }
 
-    public async Task<AuthenticationResponse> RegisterEntreprise(RegisterEntrepriseCommand command)
+    public Task<AuthenticationResponse> RegisterCandidat(RegisterCanidatCommand command)
+    {
+        throw new NotImplementedException();
+    }
+
+    public async Task<AuthenticationResponse> RegisterEntreprise(RegisterEnrepriseCommand command)
     {
         var role = "ENTREPRISE";
 
@@ -124,5 +129,5 @@ public class AuthenticationService : IAuthenticationService
 
     }
 
-    
+   
 }

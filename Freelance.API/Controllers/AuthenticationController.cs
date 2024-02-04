@@ -17,7 +17,27 @@ public class AuthenticationController : ControllerBase
         _mediator = mediator;
     }
 
-    
+
+    [HttpPost("registerCandidat")]
+    public async Task<ActionResult> RegisterCandidat(RegisterCanidatCommand command)
+    {
+        // attributs validation
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+
+
+        var response = await _mediator.Send(command);
+
+        if (!response.ISAuthenticated)
+        {
+            return BadRequest(response.Message);
+        }
+
+
+        return Ok(response);
+    }
 
     [HttpPost("registerEntreprise")]
     public async Task<ActionResult> RegisterEntrprise(RegisterEntrepriseCommand command)

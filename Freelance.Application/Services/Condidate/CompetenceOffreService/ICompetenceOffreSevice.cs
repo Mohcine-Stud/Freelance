@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Freelance.Application.Services.Condidate.CompetenceOffreService
 {
-    internal interface ICompetenceOffreSevice
+    public interface ICompetenceOffreSevice
     {
         Task<CompetenceOffreDTO> FindByIdAsync(int id);
         Task<List<CompetenceOffreDTO>> FindAllAsync();
