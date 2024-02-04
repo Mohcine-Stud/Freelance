@@ -3,8 +3,8 @@ using Microsoft.Extensions.DependencyInjection;
 using AutoMapper;
 using Freelance.Application.Services.Authentication;
 using Freelance.Application.Services.Condidate.CandidatService;
-using Freelance.Application.Persistence.IRepositories;
 using Freelance.Application.Common.Mapping;
+using Freelance.Application.Services.Condidate.CompetenceOffreService;
 
 namespace Freelance.Application;
 
@@ -14,13 +14,18 @@ public static class DependencyInjection
     {
         services.AddMediatR(typeof(DependencyInjection).Assembly);
 
-        services.AddScoped<IAuthenticationService, AuthenticationService>();
-
         services.AddAutoMapper(typeof(MappingProfile));
 
         services.AddScoped<IMapper, Mapper>();
 
+        services.AddScoped<IAuthenticationService, AuthenticationService>();
+
+        //services
+
         services.AddScoped<ICandidateService, CandidatService>();
+
+        services.AddScoped<ICompetenceOffreSevice, CompetenceOffreService>();
+
 
         return services;
     }
