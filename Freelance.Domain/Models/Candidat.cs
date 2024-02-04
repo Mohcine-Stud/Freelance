@@ -5,6 +5,7 @@ public  partial class Candidat
     public int Id { get; set; }
 
     public string? Titre { get; set; }
+    public string? Gender { get; set; }
 
     public string? Avatar { get; set; }
 
@@ -19,6 +20,8 @@ public  partial class Candidat
     public string? Disponibilite { get; set; }
 
     public string? Ville { get; set; }
+    public string ApplicationUserId { get; set; }
+    public ApplicationUser ApplicationUser { get; set; }
 
     public virtual ICollection<CondidatComp> CondidatComps { get; set; } = new List<CondidatComp>();
 

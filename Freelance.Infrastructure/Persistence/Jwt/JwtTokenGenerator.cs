@@ -1,5 +1,5 @@
 ﻿using Freelance.Application.Authentication.Common.Interfaces;
-using Freelance.Domain.Models;
+using Freelance.Application.ViewModels.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -13,6 +13,7 @@ public class JwtTokenGenerator : IJwtTokenGenerator
 {
     private readonly JwtSettings _jwtSettings;
     private readonly UserManager<IdentityUser> _userManager;
+    private IEnumerable<Claim> claims;
 
     public JwtTokenGenerator(IOptions<JwtSettings> jwtOptions, UserManager<IdentityUser> userManager)
     {
@@ -20,9 +21,9 @@ public class JwtTokenGenerator : IJwtTokenGenerator
         _userManager = userManager;
     }
 
-    public async Task<string> GenerateToken(User user)
+    public async Task<string> GenerateToken(GenerateTokenParams TokenParams)
     {
-        var identityUser = await _userManager.FindByEmailAsync(user.Email);
+        var identityUser = await _userManager.FindByEmailAsync(TokenParams.Email);
         var roles = await _userManager.GetRolesAsync(identityUser);
         var roleClaims = new List<Claim>();
         foreach (var role in roles)
@@ -30,13 +31,26 @@ public class JwtTokenGenerator : IJwtTokenGenerator
             roleClaims.Add(new Claim(ClaimTypes.Role, role));
         };
 
-        var claims = new[]
+        if(TokenParams.UserType == "ENTREPRISE")
         {
-            new Claim("FirstName", user.FirstName),
-            new Claim("LastName", user.FirstName),
-            new Claim(JwtRegisteredClaimNames.Email, user.Email),
-            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
-        }.Union(roleClaims);
+            claims = new[]
+            {
+                new Claim("EntrepriseName", TokenParams.FirstName),
+                new Claim(JwtRegisteredClaimNames.Email, TokenParams.Email),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+            }.Union(roleClaims);
+        }
+        else
+        {
+            claims = new[]
+            {
+                new Claim("FirstName", TokenParams.FirstName),
+                new Claim("LastName", TokenParams.FirstName),
+                new Claim(JwtRegisteredClaimNames.Email, TokenParams.Email),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+            }.Union(roleClaims);
+        }
+        
 
         var signinCredentials = new SigningCredentials(
             new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.Secret)),

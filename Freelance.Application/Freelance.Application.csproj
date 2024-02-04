@@ -23,4 +23,8 @@
     <ProjectReference Include="..\Freelance.Domain\Freelance.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Common\Mapping\" />
+  </ItemGroup>
+
 </Project>

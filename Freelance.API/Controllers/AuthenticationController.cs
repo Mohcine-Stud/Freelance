@@ -1,10 +1,8 @@
 ﻿using Freelance.Application.Authentication.Commands.Register;
 using Freelance.Application.Authentication.Queries.Login;
-using Freelance.Application.ViewModels;
 using Freelance.Application.ViewModels.Authentication;
 using MapsterMapper;
 using MediatR;
-using Microsoft.AspNetCore.Hosting.Server;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Freelance.Application.Controllers;
@@ -14,16 +12,16 @@ namespace Freelance.Application.Controllers;
 public class AuthenticationController : ControllerBase
 {
     private readonly ISender _mediator;
-    private readonly IMapper _mapper;
 
-    public AuthenticationController(ISender mediator, IMapper mapper)
+    public AuthenticationController(ISender mediator)
     {
         _mediator = mediator;
-        _mapper = mapper;
     }
 
-    [HttpPost("register")]
-    public async Task<ActionResult> Register(RegisterRequest request, string role)
+    
+
+    [HttpPost("registerEntreprise")]
+    public async Task<ActionResult> RegisterEntrprise(RegisterEntrepriseRequest request)
     {
         // attributs validation
         if (!ModelState.IsValid)
@@ -31,9 +29,13 @@ public class AuthenticationController : ControllerBase
             return BadRequest(ModelState);
         }
 
-        var command = new RegisterCommand(
-            request.FirstName,
-            request.LastName,
+        string role = "ENTREPRISE";
+
+        //to be fixed
+        string entrepriseName = "EntrepriseName";
+
+        var command = new RegisterEntrepriseCommand(
+            entrepriseName,
             request.Email,
             request.Password,
             role

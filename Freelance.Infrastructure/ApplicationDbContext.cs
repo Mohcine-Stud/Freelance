@@ -7,7 +7,7 @@ using System.Reflection.Emit;
 
 namespace Freelance.Infrastructure;
 
-public class ApplicationDbContext : IdentityDbContext
+public class ApplicationDbContext : IdentityDbContext<IdentityUser>
 {
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
     {
@@ -16,7 +16,21 @@ public class ApplicationDbContext : IdentityDbContext
     {
         base.OnModelCreating(modelBuilder);
         SeedRoles(modelBuilder);
-       
+
+        //configure relation ApsNetUsers
+        modelBuilder.Entity<Candidat>()
+            .HasOne(c => c.ApplicationUser)
+            .WithOne()
+            .HasForeignKey<Candidat>(c => c.ApplicationUserId)
+            .IsRequired();
+
+        modelBuilder.Entity<Entreprise>()
+            .HasOne(e => e.ApplicationUser)
+            .WithOne()
+            .HasForeignKey<Entreprise>(e => e.ApplicationUserId)
+            .IsRequired();
+
+
     }
 
     public virtual DbSet<Competence> Competences { get; set; }

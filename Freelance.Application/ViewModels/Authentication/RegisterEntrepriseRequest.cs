@@ -2,11 +2,8 @@
 
 namespace Freelance.Application.ViewModels.Authentication;
 
-public record RegisterRequest(
-        [Required]
-        string FirstName,
-        [Required]
-        string LastName,
+public record RegisterEntrepriseRequest(
+        
         [Required]
         string Email,
         [Required]
