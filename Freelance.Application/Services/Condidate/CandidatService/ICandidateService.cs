@@ -1,13 +1,8 @@
 ﻿using Freelance.Application.ViewModels.DTOs.CondidateDTO;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Freelance.Application.Services.Condidate.Candidat;
+namespace Freelance.Application.Services.Condidate.CandidatService;
 
-public interface ICondidateService
+public interface ICandidateService
 {
     Task<CandidatDTO> FindByIdAsync(int id);
     Task<List<CandidatDTO>> FindAllAsync();

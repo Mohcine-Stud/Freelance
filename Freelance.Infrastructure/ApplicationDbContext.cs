@@ -32,7 +32,7 @@ public class ApplicationDbContext : IdentityDbContext<IdentityUser>
 
     }
 
-    public virtual DbSet<Competence> Competences { get; set; }
+    public virtual DbSet<CompetenceDmExpertise> Competences { get; set; }
 
     public virtual DbSet<CompetenceOffre> CompetenceOffres { get; set; }
 

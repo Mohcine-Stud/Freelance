@@ -1,4 +1,8 @@
-﻿using Freelance.Application.ViewModels.DTOs.CompeteceDmExpertiseDTO;
+﻿using AutoMapper;
+using Freelance.Application.Persistence.IRepositories;
+using Freelance.Application.ViewModels.DTOs.CompeteceDmExpertiseDTO;
+using Freelance.Application.ViewModels.DTOs.CompetenceDTO;
+using Freelance.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,30 +11,53 @@ using System.Threading.Tasks;
 
 namespace Freelance.Application.Services.Condidate.ComptenceDmExpertiseService;
 
-internal class ComptenceDmExpertiseService : IComptenceDmExpertiseService
+public class ComptenceDmExpertiseService : IComptenceDmExpertiseService
 {
-    public Task<ComptenceDmExpertiseDTO> CreateAsync(ComptenceDmExpertiseCreateDTO entity)
+    private readonly IGenericRepository<CompetenceDmExpertise> _competenceDmExpertiseRepository;
+    private readonly IMapper _mapper;
+
+    public ComptenceDmExpertiseService(IGenericRepository<CompetenceDmExpertise> competenceDmExpertiseRepository, IMapper mapper)
     {
-        throw new NotImplementedException();
+        _competenceDmExpertiseRepository = competenceDmExpertiseRepository;
+        _mapper = mapper;
     }
 
-    public Task DeleteAsync(int id)
+
+    public async Task<CompetenceDmExpetiseDTO> FindByIdAsync(int id)
     {
-        throw new NotImplementedException();
+        var competenceDmExpertise = await _competenceDmExpertiseRepository.GetAsync(id);
+        return _mapper.Map<CompetenceDmExpetiseDTO>(competenceDmExpertise);
     }
 
-    public Task<List<ComptenceDmExpertiseDTO>> FindAllAsync()
+    public async Task<List<CompetenceDmExpetiseDTO>> FindAllAsync()
     {
-        throw new NotImplementedException();
+        var competenceDmExpertise = await _competenceDmExpertiseRepository.GetAllAsync();
+        return _mapper.Map<List<CompetenceDmExpetiseDTO>>(competenceDmExpertise);
     }
 
-    public Task<ComptenceDmExpertiseDTO> FindByIdAsync(int id)
+    public async Task<CompetenceDmExpetiseDTO> CreateAsync(ComptenceDmExpertiseCreateDTO entity)
     {
-        throw new NotImplementedException();
+        var competenceDmExpertise = _mapper.Map<CompetenceDmExpertise>(entity);
+        var createdcompetenceDm = await _competenceDmExpertiseRepository.PostAsync(competenceDmExpertise);
+        return _mapper.Map<CompetenceDmExpetiseDTO>(createdcompetenceDm);
     }
 
-    public Task<ComptenceDmExpertiseDTO> UpdateAsync(int id, ComptenceDmExpertiseUpdateDTO entity)
+    public async Task<CompetenceDmExpetiseDTO> UpdateAsync(int id, ComptenceDmExpertiseUpdateDTO entity)
     {
-        throw new NotImplementedException();
+        var existingcompetenceDm = await _competenceDmExpertiseRepository.GetAsync(id);
+        if (existingcompetenceDm == null)
+            return null;
+
+        _mapper.Map(entity, existingcompetenceDm);
+        await _competenceDmExpertiseRepository.PutAsync(id, existingcompetenceDm);
+        return _mapper.Map<CompetenceDmExpetiseDTO>(existingcompetenceDm);
+    }
+
+    public async Task DeleteAsync(int id)
+    {
+        var existingcompetenceDm = await _competenceDmExpertiseRepository.GetAsync(id);
+        if (existingcompetenceDm == null)
+            return;
+        await _competenceDmExpertiseRepository.DeleteAsync(id);
     }
 }
