@@ -1,9 +1,4 @@
 ﻿using Freelance.Application.ViewModels.DTOs.CondidateDTO;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Freelance.Application.Services.Condidate.Candidat;
 

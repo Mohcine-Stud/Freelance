@@ -1,14 +1,7 @@
 ﻿using AutoMapper;
 using Freelance.Application.Persistence.IRepositories;
-using Freelance.Application.Services.Condidate.Candidat;
 using Freelance.Application.ViewModels.DTOs.CondidateDTO;
 using Freelance.Domain.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 
 public class CandidatService : ICandidateService
 {
