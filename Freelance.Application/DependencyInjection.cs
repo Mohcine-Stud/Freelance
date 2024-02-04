@@ -21,7 +21,7 @@ public static class DependencyInjection
         services.AddSingleton(config);
         services.AddScoped<IMapper, ServiceMapper>();
 
-        services.AddScoped<IRegisterService, RegisterService>();
+        services.AddScoped<IAuthenticationService, AuthenticationService>();
 
 
         return services;

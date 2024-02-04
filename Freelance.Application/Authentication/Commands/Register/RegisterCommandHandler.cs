@@ -6,16 +6,16 @@ namespace Freelance.Application.Authentication.Commands.Register;
 
 public class RegisterCommandHandler : IRequestHandler<RegisterCommand, AuthenticationResponse>
 {
-    private readonly IRegisterService _registerservice;
+    private readonly IAuthenticationService _authenticationservice;
 
-    public RegisterCommandHandler(IRegisterService registerservice)
+    public RegisterCommandHandler(IAuthenticationService authenticationService)
     {
-        _registerservice = registerservice;
+        _authenticationservice = authenticationService;
     }
 
     public async Task<AuthenticationResponse> Handle(RegisterCommand command, CancellationToken cancellationToken)
     {
-        var registerResult = await _registerservice.Register(command);
+        var registerResult = await _authenticationservice.Register(command);
 
         return registerResult;
     }
