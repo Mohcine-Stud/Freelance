@@ -7,6 +7,7 @@ public partial class Formation
     public string? Niveau { get; set; }
 
     public string? Ecole { get; set; }
+    public string? Diplome { get; set; }
 
     public string? Description { get; set; }
 

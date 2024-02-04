@@ -1,9 +1,7 @@
 ﻿using Freelance.Application.Authentication.Commands.Register;
 using Freelance.Application.Authentication.Queries.Login;
-using Freelance.Application.ViewModels;
 using Freelance.Application.ViewModels.Authentication;
 using MediatR;
-using Microsoft.AspNetCore.Hosting.Server;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Freelance.Application.Controllers;
@@ -19,8 +17,10 @@ public class AuthenticationController : ControllerBase
         _mediator = mediator;
     }
 
-    [HttpPost("register")]
-    public async Task<ActionResult> Register(RegisterRequest request, string role)
+    
+
+    [HttpPost("registerEntreprise")]
+    public async Task<ActionResult> RegisterEntrprise(RegisterEntrepriseCommand command)
     {
         // attributs validation
         if (!ModelState.IsValid)
@@ -28,13 +28,6 @@ public class AuthenticationController : ControllerBase
             return BadRequest(ModelState);
         }
 
-        var command = new RegisterCommand(
-            request.FirstName,
-            request.LastName,
-            request.Email,
-            request.Password,
-            role
-            );
 
         var response = await _mediator.Send(command);
 

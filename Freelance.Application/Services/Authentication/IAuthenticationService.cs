@@ -6,7 +6,7 @@ namespace Freelance.Application.Services.Authentication;
 
 public interface IAuthenticationService
 {
-    Task<AuthenticationResponse> Register(RegisterCommand command);
+    Task<AuthenticationResponse> RegisterEntreprise(RegisterEntrepriseCommand command);
     Task<AuthenticationResponse> Login(LoginQuery query);
 
 }

@@ -6,6 +6,7 @@ using Freelance.Domain.Models;
 using Microsoft.AspNetCore.Identity;
 using System.Data;
 
+
 namespace Freelance.Application.Services.Authentication;
 
 public class AuthenticationService : IAuthenticationService
@@ -36,15 +37,14 @@ public class AuthenticationService : IAuthenticationService
             };
         }
 
-        var applicationUser = new User
+        var tokenParams = new GenerateTokenParams
         {
             FirstName = user.UserName,
             Email = user.Email,
-
         };
 
         //generate token
-        var token = await _jwtTokenGenerator.GenerateToken(applicationUser);
+        var token = await _jwtTokenGenerator.GenerateToken(tokenParams);
 
         return new AuthenticationResponse
         {
@@ -58,38 +58,39 @@ public class AuthenticationService : IAuthenticationService
 
     }
 
-    public async Task<AuthenticationResponse> Register(RegisterCommand command)
+    public async Task<AuthenticationResponse> RegisterEntreprise(RegisterEntrepriseCommand command)
     {
+        var role = "ENTREPRISE";
 
         if (await _userManager.FindByEmailAsync(command.Email) is not null)
         {
             return new AuthenticationResponse
             {
-                Message = "Email is already used."
+                Message = " Entreprise Email is already used."
             };
         }
 
         var user = new IdentityUser
         {
-            UserName = command.FirstName + "_"+ command.LastName,
+            UserName = command.EntrepriseName,
             Email = command.Email,
             SecurityStamp = Guid.NewGuid().ToString()
         };
 
-        if (await _roleManager.RoleExistsAsync(command.Role))
+        if (await _roleManager.RoleExistsAsync(role))
         {
             var result = await _userManager.CreateAsync(user, command.Password);
 
             if (result.Succeeded)
             {
-                await _userManager.AddToRoleAsync(user, command.Role);
+                await _userManager.AddToRoleAsync(user, role);
             }
             else
             {
                 var errors = string.Join(", ", result.Errors.Select(e => e.Description));
                 return new AuthenticationResponse
                 {
-                    Message = $"User failed to create: {errors}",
+                    Message = $"Entreprise account failed to create: {errors}",
                 };
             }
         }
@@ -102,19 +103,18 @@ public class AuthenticationService : IAuthenticationService
         }
 
         //generate token
-        var applicationUser = new User
+        var tokenParms = new GenerateTokenParams
         {
-            FirstName = command.FirstName,
-            LastName = command.LastName,
+            UserType = "ENTREPRISE",
+            FirstName = command.EntrepriseName,
             Email = user.Email,
-
         };
-        var token = await _jwtTokenGenerator.GenerateToken(applicationUser);
+
+        var token = await _jwtTokenGenerator.GenerateToken(tokenParms);
 
         return new AuthenticationResponse
         {
-            FirstName = command.FirstName,
-            LastName = command.LastName,
+            FirstName = command.EntrepriseName,
             Email = command.Email,
             ISAuthenticated = true,
             Token = token,
