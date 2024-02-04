@@ -1,4 +1,6 @@
-﻿namespace Freelance.Infrastructure.Persistence.Jwt;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Freelance.Infrastructure.Persistence.Jwt;
 
 public class JwtSettings
 {

@@ -1,8 +1,6 @@
 ﻿using MediatR;
 using Freelance.Application.Services;
 using Microsoft.Extensions.DependencyInjection;
-using Mapster;
-using MapsterMapper;
 using System.Reflection;
 using Freelance.Application.Services.Authentication;
 
@@ -14,14 +12,9 @@ public static class DependencyInjection
     {
         services.AddMediatR(typeof(DependencyInjection).Assembly);
 
-        //mapster
-        var config = TypeAdapterConfig.GlobalSettings;
-        config.Scan(Assembly.GetExecutingAssembly());
+      
 
-        services.AddSingleton(config);
-        services.AddScoped<IMapper, ServiceMapper>();
-
-        services.AddScoped<IRegisterService, RegisterService>();
+        services.AddScoped<IAuthenticationService, AuthenticationService>();
 
 
         return services;
