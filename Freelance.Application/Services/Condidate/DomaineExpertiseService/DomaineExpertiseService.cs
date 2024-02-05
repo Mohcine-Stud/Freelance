@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Freelance.Application.Services.Condidate.DomaineExpertiseService;
 
-internal class DomaineExpertiseService : IDomaineExpertiseService
+public class DomaineExpertiseService : IDomaineExpertiseService
 {
     public Task<DomaineExpertiseDTO> CreateAsync(DomaineExpertiseCreateDTO entity)
     {
