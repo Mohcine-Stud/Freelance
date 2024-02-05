@@ -1,14 +1,8 @@
 ﻿using AutoMapper;
 using Freelance.Application.Persistence.IRepositories;
-using Freelance.Application.ViewModels.DTOs.CompeteceDmExpertiseDTO;
-using Freelance.Application.ViewModels.DTOs.ExperienceDTO;
 using Freelance.Application.ViewModels.DTOs.ProjetDTO;
 using Freelance.Domain.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Freelance.Application.Services.Condidate.ProjetService
 {
