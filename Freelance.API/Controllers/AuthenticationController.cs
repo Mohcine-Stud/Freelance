@@ -40,7 +40,7 @@ public class AuthenticationController : ControllerBase
     }
 
     [HttpPost("registerEntreprise")]
-    public async Task<ActionResult> RegisterEntrprise(RegisterEntrepriseCommand command)
+    public async Task<ActionResult> RegisterEntrprise(RegisterEnrepriseCommand command)
     {
         // attributs validation
         if (!ModelState.IsValid)
