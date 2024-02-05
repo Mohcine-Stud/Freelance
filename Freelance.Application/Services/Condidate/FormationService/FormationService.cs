@@ -10,6 +10,11 @@ namespace Freelance.Application.Services.Condidate.FormationService;
 
 public class FormationService : IFormationService
 {
+    private readonly IFormationService _formationService;
+    public FormationService(IFormationService formationService)
+    {
+            
+    }
     public Task<FormationDTO> CreateAsync(FormationCreateDTO entity)
     {
         throw new NotImplementedException();

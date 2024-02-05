@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Freelance.Application.Condidate.Condidate.Commands.Delete
 {
-    public class UpdateCondidatHandler
+    public class DeleteCondidatHandler
     {
     }
 }
