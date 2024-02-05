@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Freelance.Application.Services.Condidate.FormationService;
 
-internal interface IFormationService
+public interface IFormationService
 {
     Task<FormationDTO> FindByIdAsync(int id);
     Task<List<FormationDTO>> FindAllAsync();
