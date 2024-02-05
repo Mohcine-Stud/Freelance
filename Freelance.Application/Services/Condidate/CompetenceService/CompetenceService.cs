@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Freelance.Application.Persistence.IRepositories;
 using Freelance.Application.ViewModels.DTOs.CompetenceDTO;
+using Freelance.Application.ViewModels.DTOs.ExperienceDTO;
 using Freelance.Domain.Models;
 
 namespace Freelance.Application.Services.Condidate.CompetenceService;
@@ -53,5 +54,12 @@ internal class CompetenceService : ICompetenceService
         if (existingcompetence == null)
             return;
         await _competenceRepository.DeleteAsync(id);
+    }
+
+    public async Task<IEnumerable<CompetenceDTO>> CreateRangeAsync(IEnumerable<CompetenceCreateDTO> entities)
+    {
+        var Entities = _mapper.Map<IEnumerable<Competence>>(entities);
+        var created = await _competenceRepository.PostRangeAsync(Entities);
+        return _mapper.Map<IEnumerable<CompetenceDTO>>(created);
     }
 }

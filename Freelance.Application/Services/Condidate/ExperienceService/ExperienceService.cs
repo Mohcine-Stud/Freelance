@@ -54,4 +54,11 @@ internal class ExperienceService : IExperienceService
         await _experienceService.PutAsync(id, existingcompetenceDm);
         return _mapper.Map<ExperienceDTO>(existingcompetenceDm);
     }
+
+    public async Task<IEnumerable<ExperienceDTO>> CreateRangeAsync(IEnumerable<ExperienceCreateDTO> entities)
+    {
+        var experienceEntities = _mapper.Map<IEnumerable<Experience>>(entities);
+        var createdExperience = await _experienceService.PostRangeAsync(experienceEntities);
+        return _mapper.Map<IEnumerable<ExperienceDTO>>(createdExperience);
+    }
 }
