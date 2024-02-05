@@ -69,7 +69,7 @@ namespace Freelance.Infrastructure.Migrations
                     b.ToTable("Condidats");
                 });
 
-            modelBuilder.Entity("Freelance.Domain.Models.Competence", b =>
+            modelBuilder.Entity("Freelance.Domain.Models.CompetenceDmExpertise", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -464,21 +464,21 @@ namespace Freelance.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "a1f58006-c088-496a-b819-ccefbfd3dec1",
+                            Id = "064b05df-11cc-4c09-a988-4d4e06c3270c",
                             ConcurrencyStamp = "1",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "eba20bfe-8d61-4ba8-8303-b80f6159e3a2",
+                            Id = "96db3c10-0429-4e7a-878f-5c8d088d3ed4",
                             ConcurrencyStamp = "2",
                             Name = "Candidat",
                             NormalizedName = "CANDIDAT"
                         },
                         new
                         {
-                            Id = "46db2aaa-3d8a-4557-9436-5e6fb6579539",
+                            Id = "062f72c8-5f01-425c-9739-5ccc7c02b671",
                             ConcurrencyStamp = "3",
                             Name = "Entreprise",
                             NormalizedName = "ENTREPRISE"
@@ -692,7 +692,7 @@ namespace Freelance.Infrastructure.Migrations
 
             modelBuilder.Entity("Freelance.Domain.Models.CompetenceOffre", b =>
                 {
-                    b.HasOne("Freelance.Domain.Models.Competence", "IdCompetenceNavigation")
+                    b.HasOne("Freelance.Domain.Models.CompetenceDmExpertise", "IdCompetenceNavigation")
                         .WithMany("CompetenceOffres")
                         .HasForeignKey("IdCompetenceNavigationId");
 
@@ -707,7 +707,7 @@ namespace Freelance.Infrastructure.Migrations
 
             modelBuilder.Entity("Freelance.Domain.Models.ComptenceDmExpertise", b =>
                 {
-                    b.HasOne("Freelance.Domain.Models.Competence", "IdCompetenceNavigation")
+                    b.HasOne("Freelance.Domain.Models.CompetenceDmExpertise", "IdCompetenceNavigation")
                         .WithMany("ComptenceDmExpertises")
                         .HasForeignKey("IdCompetenceNavigationId");
 
@@ -722,7 +722,7 @@ namespace Freelance.Infrastructure.Migrations
 
             modelBuilder.Entity("Freelance.Domain.Models.CondidatComp", b =>
                 {
-                    b.HasOne("Freelance.Domain.Models.Competence", "IdCompNavigation")
+                    b.HasOne("Freelance.Domain.Models.CompetenceDmExpertise", "IdCompNavigation")
                         .WithMany("CondidatComps")
                         .HasForeignKey("IdCompNavigationId");
 
@@ -869,7 +869,7 @@ namespace Freelance.Infrastructure.Migrations
                     b.Navigation("Projets");
                 });
 
-            modelBuilder.Entity("Freelance.Domain.Models.Competence", b =>
+            modelBuilder.Entity("Freelance.Domain.Models.CompetenceDmExpertise", b =>
                 {
                     b.Navigation("CompetenceOffres");
 
