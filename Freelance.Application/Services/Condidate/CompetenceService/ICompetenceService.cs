@@ -1,5 +1,5 @@
 ﻿using Freelance.Application.ViewModels.DTOs.CompetenceDTO;
-using Freelance.Application.ViewModels.DTOs.CondidateDTO;
+using Freelance.Application.ViewModels.DTOs.CompeteceDmExpertiseDTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +10,10 @@ namespace Freelance.Application.Services.Condidate.CompetenceService
 {
     public interface ICompetenceService
     {
-        Task<CompetenceDmExpetiseDTO> FindByIdAsync(int id);
-        Task<List<CompetenceDmExpetiseDTO>> FindAllAsync();
-        Task<CompetenceDmExpetiseDTO> CreateAsync(CompetenceCreateDTO entity);
-        Task<CompetenceDmExpetiseDTO> UpdateAsync(int id, CompetenceUpdateDTO entity);
+        Task<CompetenceDTO> FindByIdAsync(int id);
+        Task<List<CompetenceDTO>> FindAllAsync();
+        Task<CompetenceDTO> CreateAsync(CompetenceCreateDTO entity);
+        Task<CompetenceDTO> UpdateAsync(int id, CompetenceUpdateDTO entity);
         Task DeleteAsync(int id);
     }
 }

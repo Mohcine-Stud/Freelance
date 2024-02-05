@@ -8,5 +8,7 @@ public partial class ProjetCreateDTO
 
     public string? Description { get; set; }
 
+    public string? Link { get; set; }
+
     public int? IdCondidat { get; set; }
 }

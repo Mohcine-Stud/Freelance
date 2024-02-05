@@ -4,7 +4,6 @@ namespace Freelance.Application.ViewModels.DTOs.ExperienceDTO;
 
 public partial class ExperienceUpdateDTO
 {
-    public int Id { get; set; }
 
     public string? Titre { get; set; }
 

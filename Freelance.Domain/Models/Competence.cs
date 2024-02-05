@@ -1,6 +1,6 @@
 ﻿namespace Freelance.Domain.Models;
 
-public partial class CompetenceDmExpertise
+public partial class Competence
 {
     public int Id { get; set; }
 

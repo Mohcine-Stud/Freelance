@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Freelance.Application.Condidate.Condidate.Queries.GetCondidatDetails
 {
-    internal class GetCondidatDetailsHandler
+    public class GetCondidatDetailsHandler
     {
     }
 }

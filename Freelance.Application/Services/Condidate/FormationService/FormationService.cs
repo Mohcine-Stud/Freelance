@@ -1,5 +1,8 @@
-﻿using Freelance.Application.ViewModels.DTOs.CondidateDTO;
+﻿using AutoMapper;
+using Freelance.Application.Persistence.IRepositories;
+using Freelance.Application.ViewModels.DTOs.CondidateDTO;
 using Freelance.Application.ViewModels.DTOs.FormationDTO;
+using Freelance.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,28 +13,52 @@ namespace Freelance.Application.Services.Condidate.FormationService;
 
 public class FormationService : IFormationService
 {
-    public Task<FormationDTO> CreateAsync(FormationCreateDTO entity)
+    private readonly IGenericRepository<Formation> _formationRepository;
+    private readonly IMapper _mapper;
+
+    public FormationService(IGenericRepository<Formation> formationRepository, IMapper mapper)
     {
-        throw new NotImplementedException();
+        _formationRepository = formationRepository;
+        _mapper = mapper;
     }
 
-    public Task DeleteAsync(int id)
+    public async Task<FormationDTO> CreateAsync(FormationCreateDTO entity)
     {
-        throw new NotImplementedException();
+        var Formation = _mapper.Map<Formation>(entity);
+        var createdFormation = await _formationRepository.PostAsync(Formation);
+        return _mapper.Map<FormationDTO>(createdFormation);
     }
 
-    public Task<List<FormationDTO>> FindAllAsync()
+   
+
+    public async Task<List<FormationDTO>> FindAllAsync()
     {
-        throw new NotImplementedException();
+        var candidat = await _formationRepository.GetAllAsync();
+        return _mapper.Map<List<FormationDTO>>(candidat);
     }
 
-    public Task<FormationDTO> FindByIdAsync(int id)
+    public async Task<FormationDTO> FindByIdAsync(int id)
     {
-        throw new NotImplementedException();
+        var candidat = await _formationRepository.GetAsync(id);
+        return _mapper.Map<FormationDTO>(candidat);
     }
 
-    public Task<FormationDTO> UpdateAsync(int id, FormationUpdateDTO entity)
+    public async Task<FormationDTO> UpdateAsync(int id, FormationUpdateDTO entity)
     {
-        throw new NotImplementedException();
+        var existingCandidat = await _formationRepository.GetAsync(id);
+        if (existingCandidat == null)
+            return null;
+
+        _mapper.Map(entity, existingCandidat);
+        await _formationRepository.PutAsync(id, existingCandidat);
+        return _mapper.Map<FormationDTO>(existingCandidat);
+    }
+
+    public async Task DeleteAsync(int id)
+    {
+        var existingCandidat = await _formationRepository.GetAsync(id);
+        if (existingCandidat == null)
+            return;
+        await _formationRepository.DeleteAsync(id);
     }
 }
