@@ -1,4 +1,5 @@
 ﻿using Freelance.Application.ViewModels.DTOs.CondidateDTO;
+using Freelance.Application.ViewModels.DTOs.ExperienceDTO;
 using Freelance.Application.ViewModels.DTOs.ProjetDTO;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ public interface IProjetService
     Task<ProjetDTO> FindByIdAsync(int id);
     Task<List<ProjetDTO>> FindAllAsync();
     Task<ProjetDTO> CreateAsync(ProjetCreateDTO entity);
+    Task<IEnumerable<ProjetDTO>> CreateRangeAsync(IEnumerable<ProjetCreateDTO> entities);
     Task<ProjetDTO> UpdateAsync(int id, ProjetUpdateDTO entity);
     Task DeleteAsync(int id);
 }

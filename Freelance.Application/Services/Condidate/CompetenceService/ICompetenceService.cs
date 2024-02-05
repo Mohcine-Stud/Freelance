@@ -1,4 +1,5 @@
 ﻿using Freelance.Application.ViewModels.DTOs.CompetenceDTO;
+using Freelance.Application.ViewModels.DTOs.ExperienceDTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,7 @@ namespace Freelance.Application.Services.Condidate.CompetenceService
         Task<CompetenceDTO> FindByIdAsync(int id);
         Task<List<CompetenceDTO>> FindAllAsync();
         Task<CompetenceDTO> CreateAsync(CompetenceCreateDTO entity);
+        Task<IEnumerable<CompetenceDTO>> CreateRangeAsync(IEnumerable<CompetenceCreateDTO> entities);
         Task<CompetenceDTO> UpdateAsync(int id, CompetenceUpdateDTO entity);
         Task DeleteAsync(int id);
     }

@@ -4,6 +4,7 @@ using Freelance.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Freelance.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240205164532_addConstructers")]
+    partial class addConstructers
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -144,9 +147,6 @@ namespace Freelance.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("CompetenceId")
-                        .HasColumnType("int");
-
                     b.Property<int?>("IdComp")
                         .HasColumnType("int");
 
@@ -163,8 +163,6 @@ namespace Freelance.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CompetenceId");
 
                     b.HasIndex("IdCompNavigationId");
 
@@ -681,10 +679,6 @@ namespace Freelance.Infrastructure.Migrations
                 {
                     b.HasOne("Freelance.Domain.Models.Competence", "IdCompNavigation")
                         .WithMany("CondidatComps")
-                        .HasForeignKey("CompetenceId");
-
-                    b.HasOne("Freelance.Domain.Models.ComptenceDmExpertise", "IdCompNavigation")
-                        .WithMany()
                         .HasForeignKey("IdCompNavigationId");
 
                     b.HasOne("Freelance.Domain.Models.Candidat", "IdCondNavigation")

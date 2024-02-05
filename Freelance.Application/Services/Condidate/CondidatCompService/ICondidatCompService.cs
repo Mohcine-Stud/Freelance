@@ -6,14 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Freelance.Application.Services.Condidate.CondidatCompService
+namespace Freelance.Application.Services.Condidate.CondidatCompService;
+
+public interface ICondidatCompService
 {
-    public interface ICondidatCompService
-    {
-        Task<CondidatCompDTO> FindByIdAsync(int id);
-        Task<List<CondidatCompDTO>> FindAllAsync();
-        Task<CondidatCompDTO> CreateAsync(CondidatCompCreateDTO entity);
-        Task<CondidatCompDTO> UpdateAsync(int id, CondidatCompUpdateDTO entity);
-        Task DeleteAsync(int id);
-    }
+    Task<CondidatCompDTO> FindByIdAsync(int id);
+    Task<List<CondidatCompDTO>> FindAllAsync();
+    Task<CondidatCompDTO> CreateAsync(CondidatCompCreateDTO entity);
+    Task<CondidatCompDTO> UpdateAsync(int id, CondidatCompUpdateDTO entity);
+    Task DeleteAsync(int id);
 }

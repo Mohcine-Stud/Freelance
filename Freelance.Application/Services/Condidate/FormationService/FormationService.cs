@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Freelance.Application.Persistence.IRepositories;
 using Freelance.Application.ViewModels.DTOs.CondidateDTO;
+using Freelance.Application.ViewModels.DTOs.ExperienceDTO;
 using Freelance.Application.ViewModels.DTOs.FormationDTO;
 using Freelance.Domain.Models;
 using System;
@@ -29,7 +30,7 @@ public class FormationService : IFormationService
         return _mapper.Map<FormationDTO>(createdFormation);
     }
 
-   
+
 
     public async Task<List<FormationDTO>> FindAllAsync()
     {
@@ -60,5 +61,12 @@ public class FormationService : IFormationService
         if (existingCandidat == null)
             return;
         await _formationRepository.DeleteAsync(id);
+    }
+
+    public async Task<IEnumerable<FormationDTO>> CreateRangeAsync(IEnumerable<FormationCreateDTO> entities)
+    {
+        var Entities = _mapper.Map<IEnumerable<Formation>>(entities);
+        var createdEntity = await _formationRepository.PostRangeAsync(Entities);
+        return _mapper.Map<IEnumerable<FormationDTO>>(createdEntity);
     }
 }

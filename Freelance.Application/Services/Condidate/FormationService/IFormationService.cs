@@ -1,4 +1,5 @@
-﻿using Freelance.Application.ViewModels.DTOs.FormationDTO;
+﻿using Freelance.Application.ViewModels.DTOs.ExperienceDTO;
+using Freelance.Application.ViewModels.DTOs.FormationDTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ public interface IFormationService
 {
     Task<FormationDTO> FindByIdAsync(int id);
     Task<List<FormationDTO>> FindAllAsync();
+    Task<IEnumerable<FormationDTO>> CreateRangeAsync(IEnumerable<FormationCreateDTO> entities);
     Task<FormationDTO> CreateAsync(FormationCreateDTO entity);
     Task<FormationDTO> UpdateAsync(int id, FormationUpdateDTO entity);
     Task DeleteAsync(int id);

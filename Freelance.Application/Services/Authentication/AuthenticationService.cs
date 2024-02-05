@@ -1,6 +1,7 @@
 ﻿using Freelance.Application.Authentication.Commands.Register;
 using Freelance.Application.Authentication.Common.Interfaces;
 using Freelance.Application.Authentication.Queries.Login;
+using Freelance.Application.Persistence.IRepositories;
 using Freelance.Application.Services.Condidate.CandidatService;
 using Freelance.Application.Services.Condidate.CondidatCompService;
 using Freelance.Application.Services.Condidate.ExperienceService;
@@ -10,12 +11,14 @@ using Freelance.Application.ViewModels.Authentication;
 using Freelance.Domain.Models;
 using Microsoft.AspNetCore.Identity;
 using System.Data;
+using static System.Formats.Asn1.AsnWriter;
 
 
 namespace Freelance.Application.Services.Authentication;
 
 public class AuthenticationService : IAuthenticationService
 {
+    private readonly IGenericRepository<Candidat> _condidatRepository;
     private readonly UserManager<IdentityUser> _userManager;
     private readonly RoleManager<IdentityRole> _roleManager;
     private readonly IJwtTokenGenerator _jwtTokenGenerator;
@@ -31,18 +34,12 @@ public class AuthenticationService : IAuthenticationService
         UserManager<IdentityUser> userManager,
         RoleManager<IdentityRole> roleManager,
         IJwtTokenGenerator jwtTokenGenerator,
-        ICandidateService candidateService,
-        IProjetService projetService,
-        IExperienceService experienceService,
-        ICondidatCompService condidatCompService)
+        IGenericRepository<Candidat> condidateRepository)
     {
         _userManager = userManager;
         _roleManager = roleManager;
         _jwtTokenGenerator = jwtTokenGenerator;
-        _candidateService = candidateService;
-        _projetService = projetService;
-        _experienceService = experienceService;
-        _condidatCompService = condidatCompService;
+        _condidatRepository = condidateRepository;
     }
 
     public async Task<AuthenticationResponse> Login(LoginQuery query)
@@ -101,16 +98,65 @@ public class AuthenticationService : IAuthenticationService
         //persist data to db 
         if (await _roleManager.RoleExistsAsync(role))
         {
-            // create user 
+            //create user
             var result = await _userManager.CreateAsync(user, command.Password);
-
-            //persist to db
-             await _candidateService.CreateAsync(command.CandidatInfos);
-             
+    
 
             if (result.Succeeded)
             {
                 await _userManager.AddToRoleAsync(user, role);
+
+                // create candidat (mapping command to candidat to be fixed soon!)
+                var candidat = new Candidat
+                {
+                    Titre = command.CandidatInfos.Titre,
+                    Avatar = command.CandidatInfos.Avatar,
+                    Gender = command.CandidatInfos.Gender,
+                    Adresse = command.CandidatInfos.Adresse,
+                    DateNaissance = command.CandidatInfos.DateNaissance,
+                    Tele = command.CandidatInfos.Tele,
+                    Mobilite = command.CandidatInfos.Mobilite,
+                    Disponibilite = command.CandidatInfos.Disponibilite,
+                    Ville = command.CandidatInfos.Ville,
+                    CondidatComps = command.CompetenceList.ConvertAll(
+                        competence => new CondidatComp
+                        {
+                            Niveau = competence.Niveau,
+                            IdComp = competence.IdComp,
+                        }),
+                    Experiences = command.ExperienceList.ConvertAll(
+                        experience => new Experience
+                        {
+                            Titre = experience.Titre,
+                            Local = experience.Local,
+                            Description = experience.Description,
+                            Ville = experience.Ville,
+                            DateDebut = experience.DateDebut,
+                            DateFin = experience.DateFin
+                        }),
+                    Formations = command.FormationList.ConvertAll(
+                        formation => new Formation
+                        {
+                            Niveau = formation.Niveau,
+                            Ecole = formation.Ecole,
+                            Diplome = formation.Diplome,
+                            Description = formation.Description,
+                            Ville = formation.Ville,
+                            DateDebut = formation.DateDebut,
+                            DateFin = formation.DateFin
+                         }),
+                    Projets = command.ProjetList.ConvertAll(
+                        projet => new Projet
+                        {
+                            Nom = projet.Nom,
+                            Description = projet.Description,
+                            Link = projet.Link
+                        })
+                };
+
+                //persist candidat to db
+                await _condidatRepository.PostAsync(candidat);
+                
             }
             else
             {

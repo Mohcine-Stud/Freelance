@@ -13,6 +13,7 @@ public interface IExperienceService
     Task<ExperienceDTO> FindByIdAsync(int id);
     Task<List<ExperienceDTO>> FindAllAsync();
     Task<ExperienceDTO> CreateAsync(ExperienceCreateDTO entity);
+    Task<IEnumerable<ExperienceDTO>> CreateRangeAsync(IEnumerable<ExperienceCreateDTO> entities);
     Task<ExperienceDTO> UpdateAsync(int id, ExperienceUpdateDTO entity);
     Task DeleteAsync(int id);
 }
