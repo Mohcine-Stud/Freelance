@@ -1,5 +1,5 @@
 ﻿using Freelance.Application.ViewModels.DTOs.CompetenceDTO;
-using Freelance.Application.ViewModels.DTOs.CompeteceDmExpertiseDTO;
+using Freelance.Application.ViewModels.DTOs.CompeteceExpertiseDTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
