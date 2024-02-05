@@ -48,4 +48,12 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
         return data;
     }
 
+    public async Task<IEnumerable<T>> PostRangeAsync(IEnumerable<T> entities)
+    {
+        await _table.AddRangeAsync(entities);
+        await _db.SaveChangesAsync();
+        return entities;
+    }
+
+
 }
