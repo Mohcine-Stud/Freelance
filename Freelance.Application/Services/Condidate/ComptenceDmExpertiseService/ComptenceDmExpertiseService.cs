@@ -19,7 +19,7 @@ public class ComptenceDmExpertiseService : IComptenceDmExpertiseService
 
     public async Task<ComptenceDmExpertiseDTO> CreateAsync(ComptenceDmExpertiseCreateDTO entity)
     {
-        var competenceDmExpertise = _mapper.Map<CompetenceDmExpertise>(entity);
+        var competenceDmExpertise = _mapper.Map<Competence>(entity);
         var createdcompetenceDm = await _competenceDmExpertiseRepository.PostAsync(competenceDmExpertise);
         return _mapper.Map<ComptenceDmExpertiseDTO>(createdcompetenceDm);
     }
