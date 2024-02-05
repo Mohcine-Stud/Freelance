@@ -12,8 +12,10 @@ public class RegisterCandidatCommandHandler : IRequestHandler<RegisterCanidatCom
     {
         _authenticationservice = authenticationService;
     }
-    public Task<AuthenticationResponse> Handle(RegisterCanidatCommand request, CancellationToken cancellationToken)
+    public async Task<AuthenticationResponse> Handle(RegisterCanidatCommand request, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        var result = await _authenticationservice.RegisterCandidat(request);
+
+        return result;
     }
 }

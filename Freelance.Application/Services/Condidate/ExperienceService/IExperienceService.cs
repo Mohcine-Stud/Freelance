@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Freelance.Application.Services.Condidate.ExperienceService;
 
-internal interface IExperienceService
+public interface IExperienceService
 {
     Task<ExperienceDTO> FindByIdAsync(int id);
     Task<List<ExperienceDTO>> FindAllAsync();

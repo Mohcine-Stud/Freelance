@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Freelance.Application.Services.Condidate.ProjetService;
 
-internal interface IProjetService
+public interface IProjetService
 {
     Task<ProjetDTO> FindByIdAsync(int id);
     Task<List<ProjetDTO>> FindAllAsync();
