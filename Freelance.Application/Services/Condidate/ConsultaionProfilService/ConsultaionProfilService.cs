@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Freelance.Application.Services.Condidate.ConsultaionProfilService;
 
-internal class ConsultaionProfilService : IConsultaionProfilService
+public class ConsultaionProfilService : IConsultaionProfilService
 {
     private readonly IGenericRepository<ConsultaionProfil> _consultaionProfileService;
     private readonly IMapper _mapper;

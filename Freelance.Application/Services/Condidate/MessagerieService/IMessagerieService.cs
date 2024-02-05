@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Freelance.Application.Services.Condidate.MessagerieService;
 
-internal interface IMessagerieService
+public interface IMessagerieService
 {
     Task<MessagerieDTO> FindByIdAsync(int id);
     Task<List<MessagerieDTO>> FindAllAsync();
