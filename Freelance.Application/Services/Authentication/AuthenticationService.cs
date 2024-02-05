@@ -101,7 +101,12 @@ public class AuthenticationService : IAuthenticationService
         //persist data to db 
         if (await _roleManager.RoleExistsAsync(role))
         {
+            // create user 
             var result = await _userManager.CreateAsync(user, command.Password);
+
+            //persist to db
+             await _candidateService.CreateAsync(command.CandidatInfos);
+             
 
             if (result.Succeeded)
             {

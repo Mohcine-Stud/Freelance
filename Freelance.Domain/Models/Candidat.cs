@@ -20,8 +20,8 @@ public  partial class Candidat
     public string? Disponibilite { get; set; }
 
     public string? Ville { get; set; }
-    public string ApplicationUserId { get; set; }
-    public ApplicationUser ApplicationUser { get; set; }
+    //public string ApplicationUserId { get; set; }
+    //public ApplicationUser ApplicationUser { get; set; }
 
     public virtual ICollection<CondidatComp> CondidatComps { get; set; } = new List<CondidatComp>();
 
