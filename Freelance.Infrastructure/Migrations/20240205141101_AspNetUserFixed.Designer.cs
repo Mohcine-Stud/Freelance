@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Freelance.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240205091048_InitialCreate_said")]
-    partial class InitialCreate_said
+    [Migration("20240205141101_AspNetUserFixed")]
+    partial class AspNetUserFixed
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -35,10 +35,6 @@ namespace Freelance.Infrastructure.Migrations
 
                     b.Property<string>("Adresse")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ApplicationUserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Avatar")
                         .HasColumnType("nvarchar(max)");
@@ -66,13 +62,10 @@ namespace Freelance.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ApplicationUserId")
-                        .IsUnique();
-
                     b.ToTable("Condidats");
                 });
 
-            modelBuilder.Entity("Freelance.Domain.Models.CompetenceDmExpertise", b =>
+            modelBuilder.Entity("Freelance.Domain.Models.Competence", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -154,6 +147,9 @@ namespace Freelance.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int?>("CompetenceId")
+                        .HasColumnType("int");
+
                     b.Property<int?>("IdComp")
                         .HasColumnType("int");
 
@@ -170,6 +166,8 @@ namespace Freelance.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CompetenceId");
 
                     b.HasIndex("IdCompNavigationId");
 
@@ -237,10 +235,6 @@ namespace Freelance.Infrastructure.Migrations
                     b.Property<string>("Adresse")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ApplicationUserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<DateTime?>("DateCreation")
                         .HasColumnType("datetime2");
 
@@ -254,9 +248,6 @@ namespace Freelance.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ApplicationUserId")
-                        .IsUnique();
 
                     b.ToTable("Entreprises");
                 });
@@ -467,21 +458,21 @@ namespace Freelance.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "064b05df-11cc-4c09-a988-4d4e06c3270c",
+                            Id = "ed6875c6-b1c0-40fc-a6bc-7388236630f1",
                             ConcurrencyStamp = "1",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "96db3c10-0429-4e7a-878f-5c8d088d3ed4",
+                            Id = "7aae7b6d-a50e-45ec-8e49-740b61929bfe",
                             ConcurrencyStamp = "2",
                             Name = "Candidat",
                             NormalizedName = "CANDIDAT"
                         },
                         new
                         {
-                            Id = "062f72c8-5f01-425c-9739-5ccc7c02b671",
+                            Id = "9529778e-4fa8-4119-86b1-4742d2ce7e31",
                             ConcurrencyStamp = "3",
                             Name = "Entreprise",
                             NormalizedName = "ENTREPRISE"
@@ -523,10 +514,6 @@ namespace Freelance.Infrastructure.Migrations
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
@@ -580,10 +567,6 @@ namespace Freelance.Infrastructure.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
-
-                    b.UseTphMappingStrategy();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -667,35 +650,9 @@ namespace Freelance.Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("Freelance.Domain.Models.ApplicationUser", b =>
-                {
-                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasDiscriminator().HasValue("ApplicationUser");
-                });
-
-            modelBuilder.Entity("Freelance.Domain.Models.Candidat", b =>
-                {
-                    b.HasOne("Freelance.Domain.Models.ApplicationUser", "ApplicationUser")
-                        .WithOne()
-                        .HasForeignKey("Freelance.Domain.Models.Candidat", "ApplicationUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ApplicationUser");
-                });
-
             modelBuilder.Entity("Freelance.Domain.Models.CompetenceOffre", b =>
                 {
-                    b.HasOne("Freelance.Domain.Models.CompetenceDmExpertise", "IdCompetenceNavigation")
+                    b.HasOne("Freelance.Domain.Models.Competence", "IdCompetenceNavigation")
                         .WithMany("CompetenceOffres")
                         .HasForeignKey("IdCompetenceNavigationId");
 
@@ -710,7 +667,7 @@ namespace Freelance.Infrastructure.Migrations
 
             modelBuilder.Entity("Freelance.Domain.Models.ComptenceDmExpertise", b =>
                 {
-                    b.HasOne("Freelance.Domain.Models.CompetenceDmExpertise", "IdCompetenceNavigation")
+                    b.HasOne("Freelance.Domain.Models.Competence", "IdCompetenceNavigation")
                         .WithMany("ComptenceDmExpertises")
                         .HasForeignKey("IdCompetenceNavigationId");
 
@@ -725,8 +682,12 @@ namespace Freelance.Infrastructure.Migrations
 
             modelBuilder.Entity("Freelance.Domain.Models.CondidatComp", b =>
                 {
-                    b.HasOne("Freelance.Domain.Models.CompetenceDmExpertise", "IdCompNavigation")
+                    b.HasOne("Freelance.Domain.Models.Competence", null)
                         .WithMany("CondidatComps")
+                        .HasForeignKey("CompetenceId");
+
+                    b.HasOne("Freelance.Domain.Models.ComptenceDmExpertise", "IdCompNavigation")
+                        .WithMany()
                         .HasForeignKey("IdCompNavigationId");
 
                     b.HasOne("Freelance.Domain.Models.Candidat", "IdCondNavigation")
@@ -751,17 +712,6 @@ namespace Freelance.Infrastructure.Migrations
                     b.Navigation("IdCondidatNavigation");
 
                     b.Navigation("IdEntrepriseNavigation");
-                });
-
-            modelBuilder.Entity("Freelance.Domain.Models.Entreprise", b =>
-                {
-                    b.HasOne("Freelance.Domain.Models.ApplicationUser", "ApplicationUser")
-                        .WithOne()
-                        .HasForeignKey("Freelance.Domain.Models.Entreprise", "ApplicationUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ApplicationUser");
                 });
 
             modelBuilder.Entity("Freelance.Domain.Models.Experience", b =>
@@ -872,7 +822,7 @@ namespace Freelance.Infrastructure.Migrations
                     b.Navigation("Projets");
                 });
 
-            modelBuilder.Entity("Freelance.Domain.Models.CompetenceDmExpertise", b =>
+            modelBuilder.Entity("Freelance.Domain.Models.Competence", b =>
                 {
                     b.Navigation("CompetenceOffres");
 

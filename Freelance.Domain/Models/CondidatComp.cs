@@ -10,7 +10,19 @@ public partial class CondidatComp
 
     public int? IdCond { get; set; }
 
-    public virtual ComptenceDmExpertise? IdCompNavigation { get; set; }
+    public virtual Competence? IdCompNavigation { get; set; }
 
     public virtual Candidat? IdCondNavigation { get; set; }
+    public CondidatComp() { }
+
+    public CondidatComp(
+        string? niveau, 
+        int? idComp, 
+        Competence? idCompNavigation
+        )
+    {
+        Niveau = niveau;
+        IdComp = idComp;
+        IdCompNavigation = idCompNavigation;
+    }
 }

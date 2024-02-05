@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Freelance.Application.Services.Condidate.DomaineExpertiseService;
 
-internal interface IDomaineExpertiseService
+public interface IDomaineExpertiseService
 {
     Task<DomaineExpertiseDTO> FindByIdAsync(int id);
     Task<List<DomaineExpertiseDTO>> FindAllAsync();
