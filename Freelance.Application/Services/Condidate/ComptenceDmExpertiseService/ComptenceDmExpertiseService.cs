@@ -8,10 +8,10 @@ namespace Freelance.Application.Services.Condidate.ComptenceDmExpertiseService;
 
 public class ComptenceDmExpertiseService : IComptenceDmExpertiseService
 {
-    private readonly IGenericRepository<CompetenceDmExpertise> _competenceDmExpertiseRepository;
+    private readonly IGenericRepository<ComptenceDmExpertise> _competenceDmExpertiseRepository;
     private readonly IMapper _mapper;
 
-    public ComptenceDmExpertiseService(IGenericRepository<CompetenceDmExpertise> competenceDmExpertiseRepository, IMapper mapper)
+    public ComptenceDmExpertiseService(IGenericRepository<ComptenceDmExpertise> competenceDmExpertiseRepository, IMapper mapper)
     {
         _competenceDmExpertiseRepository = competenceDmExpertiseRepository;
         _mapper = mapper;
@@ -19,7 +19,7 @@ public class ComptenceDmExpertiseService : IComptenceDmExpertiseService
 
     public async Task<ComptenceDmExpertiseDTO> CreateAsync(ComptenceDmExpertiseCreateDTO entity)
     {
-        var competenceDmExpertise = _mapper.Map<Competence>(entity);
+        var competenceDmExpertise = _mapper.Map<ComptenceDmExpertise>(entity);
         var createdcompetenceDm = await _competenceDmExpertiseRepository.PostAsync(competenceDmExpertise);
         return _mapper.Map<ComptenceDmExpertiseDTO>(createdcompetenceDm);
     }
