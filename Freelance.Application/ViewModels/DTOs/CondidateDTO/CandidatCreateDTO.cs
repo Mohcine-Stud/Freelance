@@ -5,6 +5,7 @@ namespace Freelance.Application.ViewModels.DTOs.CondidateDTO;
 public partial class CandidatCreateDTO
 {
     public string? Titre { get; set; }
+    public string? Gender { get; set; }
 
     public string? Avatar { get; set; }
 
@@ -19,4 +20,5 @@ public partial class CandidatCreateDTO
     public string? Disponibilite { get; set; }
 
     public string? Ville { get; set; }
+    public string ApplicationUserId { get; set; }
 }

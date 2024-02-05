@@ -7,6 +7,7 @@ public partial class CandidatDTO
     public int Id { get; set; }
 
     public string? Titre { get; set; }
+    public string? Gender { get; set; }
 
     public string? Avatar { get; set; }
 
@@ -21,4 +22,5 @@ public partial class CandidatDTO
     public string? Disponibilite { get; set; }
 
     public string? Ville { get; set; }
+    public string ApplicationUserId { get; set; }
 }

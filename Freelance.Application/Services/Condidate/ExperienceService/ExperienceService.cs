@@ -1,36 +1,57 @@
-﻿using Freelance.Application.ViewModels.DTOs.ExperienceDTO;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AutoMapper;
+using Freelance.Application.Persistence.IRepositories;
+using Freelance.Application.ViewModels.DTOs.ExperienceDTO;
+using Freelance.Domain.Models;
 
 namespace Freelance.Application.Services.Condidate.ExperienceService;
 
 internal class ExperienceService : IExperienceService
 {
-    public Task<ExperienceDTO> CreateAsync(ExperienceCreateDTO entity)
+
+    private readonly IGenericRepository<Experience> _experienceService;
+    private readonly IMapper _mapper;
+
+    public ExperienceService(IGenericRepository<Experience> experieceService, IMapper mapper)
     {
-        throw new NotImplementedException();
+        _experienceService = experieceService;
+        _mapper = mapper;
     }
 
-    public Task DeleteAsync(int id)
+    public async Task<ExperienceDTO> CreateAsync(ExperienceCreateDTO entity)
     {
-        throw new NotImplementedException();
+        var experience = _mapper.Map<Experience>(entity);
+        var createdExperience = await _experienceService.PostAsync(experience);
+        return _mapper.Map<ExperienceDTO>(createdExperience);
     }
 
-    public Task<List<ExperienceDTO>> FindAllAsync()
+    public async Task DeleteAsync(int id)
     {
-        throw new NotImplementedException();
+        var existingcompetenceDm = await _experienceService.GetAsync(id);
+        if (existingcompetenceDm == null)
+            return;
+        await _experienceService.DeleteAsync(id);
     }
 
-    public Task<ExperienceDTO> FindByIdAsync(int id)
+    public async Task<List<ExperienceDTO>> FindAllAsync()
     {
-        throw new NotImplementedException();
+        var competenceDmExpertise = await _experienceService.GetAllAsync();
+        return _mapper.Map<List<ExperienceDTO>>(competenceDmExpertise);
     }
 
-    public Task<ExperienceDTO> UpdateAsync(int id, ExperienceUpdateDTO entity)
+    public async Task<ExperienceDTO> FindByIdAsync(int id)
     {
-        throw new NotImplementedException();
+        var competenceDmExpertise = await _experienceService.GetAsync(id);
+        return _mapper.Map<ExperienceDTO>(competenceDmExpertise);
+    }
+
+    public async Task<ExperienceDTO> UpdateAsync(int id, ExperienceUpdateDTO entity)
+    {
+        var existingcompetenceDm = await _experienceService.GetAsync(id);
+        if (existingcompetenceDm == null)
+            return null;
+
+        _mapper.Map(entity, existingcompetenceDm);
+        await _experienceService.PutAsync(id, existingcompetenceDm);
+        return _mapper.Map<ExperienceDTO>(existingcompetenceDm);
     }
 }
