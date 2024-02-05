@@ -39,7 +39,7 @@ public static class DependencyInjection
         services.AddScoped<ICondidatCompService, CondidatCompService>();
         services.AddScoped<IConsultaionProfilService, ConsultaionProfilService>();
         services.AddScoped<IDomaineExpertiseService, DomaineExpertiseService>();
-        //services.AddScoped<IEntrepriseService, EntrepriseService>();
+        services.AddScoped<IEntrepriseService, EntrepriseService>();
         services.AddScoped<IExperienceService, ExperienceService>();
         services.AddScoped<IFormationService, FormationService>();
         services.AddScoped<IOffreService, OffreService>();
