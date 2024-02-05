@@ -5,7 +5,7 @@ using Freelance.Domain.Models;
 
 namespace Freelance.Application.ViewModels.DTOs.CompetenceDTO;
 
-public partial class CompetenceDmExpetiseDTO
+public partial class CompetenceDTO
 {
     public int Id { get; set; }
 

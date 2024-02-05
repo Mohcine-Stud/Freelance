@@ -10,10 +10,10 @@ namespace Freelance.Application.Services.Condidate.CompetenceService
 {
     public interface ICompetenceService
     {
-        Task<CompetenceExpetiseDTO> FindByIdAsync(int id);
-        Task<List<CompetenceExpetiseDTO>> FindAllAsync();
-        Task<CompetenceExpetiseDTO> CreateAsync(CompetenceCreateDTO entity);
-        Task<CompetenceExpetiseDTO> UpdateAsync(int id, CompetenceUpdateDTO entity);
+        Task<CompetenceDTO> FindByIdAsync(int id);
+        Task<List<CompetenceDTO>> FindAllAsync();
+        Task<CompetenceDTO> CreateAsync(CompetenceCreateDTO entity);
+        Task<CompetenceDTO> UpdateAsync(int id, CompetenceUpdateDTO entity);
         Task DeleteAsync(int id);
     }
 }
