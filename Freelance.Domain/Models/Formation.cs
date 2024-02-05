@@ -20,5 +20,24 @@ public partial class Formation
     public int? IdCondidat { get; set; }
 
     public virtual Candidat? IdCondidatNavigation { get; set; }
+    public Formation() { }
 
+    public Formation(
+        string? niveau,
+        string? ecole, 
+        string? diplome, 
+        string? description, 
+        string? ville, 
+        DateTime? dateDebut, 
+        DateTime? dateFin
+        )
+    {
+        Niveau = niveau;
+        Ecole = ecole;
+        Diplome = diplome;
+        Description = description;
+        Ville = ville;
+        DateDebut = dateDebut;
+        DateFin = dateFin;
+    }
 }

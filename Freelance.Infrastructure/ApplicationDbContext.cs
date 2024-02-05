@@ -17,17 +17,17 @@ public class ApplicationDbContext : IdentityDbContext<IdentityUser>
         SeedRoles(modelBuilder);
 
         //configure relation ApsNetUsers
-        modelBuilder.Entity<Candidat>()
-            .HasOne(c => c.ApplicationUser)
-            .WithOne()
-            .HasForeignKey<Candidat>(c => c.ApplicationUserId)
-            .IsRequired();
+        //modelBuilder.Entity<Candidat>()
+        //    .HasOne(c => c.ApplicationUser)
+        //    .WithOne()
+        //    .HasForeignKey<Candidat>(c => c.ApplicationUserId)
+        //    .IsRequired();
 
-        modelBuilder.Entity<Entreprise>()
-            .HasOne(e => e.ApplicationUser)
-            .WithOne()
-            .HasForeignKey<Entreprise>(e => e.ApplicationUserId)
-            .IsRequired();
+        //modelBuilder.Entity<Entreprise>()
+        //    .HasOne(e => e.ApplicationUser)
+        //    .WithOne()
+        //    .HasForeignKey<Entreprise>(e => e.ApplicationUserId)
+        //    .IsRequired();
 
 
     }

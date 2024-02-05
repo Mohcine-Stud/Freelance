@@ -12,4 +12,12 @@ public partial class Projet
     public int? IdCondidat { get; set; }
 
     public virtual Candidat? IdCondidatNavigation { get; set; }
+    public Projet() { }
+
+    public Projet(string? nom, string? description, string? link)
+    {
+        Nom = nom;
+        Description = description;
+        Link = link;
+    }
 }

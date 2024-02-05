@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Freelance.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate_said : Migration
+    public partial class AspNetUserFixed : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -32,9 +32,6 @@ namespace Freelance.Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -69,6 +66,27 @@ namespace Freelance.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Condidats",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Titre = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Gender = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Avatar = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Adresse = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DateNaissance = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Tele = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Mobilite = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Disponibilite = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Ville = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Condidats", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "DomaineExpertises",
                 columns: table => new
                 {
@@ -79,6 +97,23 @@ namespace Freelance.Infrastructure.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_DomaineExpertises", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Entreprises",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    RaisonSociale = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Logo = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DateCreation = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Adresse = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Ville = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Entreprises", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -207,137 +242,6 @@ namespace Freelance.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Condidats",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Titre = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Gender = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Avatar = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Adresse = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DateNaissance = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    Tele = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Mobilite = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Disponibilite = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Ville = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ApplicationUserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Condidats", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Condidats_AspNetUsers_ApplicationUserId",
-                        column: x => x.ApplicationUserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Entreprises",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    RaisonSociale = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Logo = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DateCreation = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    Adresse = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Ville = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ApplicationUserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Entreprises", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Entreprises_AspNetUsers_ApplicationUserId",
-                        column: x => x.ApplicationUserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ComptenceDmExpertises",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    IdCompetence = table.Column<int>(type: "int", nullable: true),
-                    IdDmexpertise = table.Column<int>(type: "int", nullable: true),
-                    IdCompetenceNavigationId = table.Column<int>(type: "int", nullable: true),
-                    IdDmexpertiseNavigationId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ComptenceDmExpertises", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_ComptenceDmExpertises_Competences_IdCompetenceNavigationId",
-                        column: x => x.IdCompetenceNavigationId,
-                        principalTable: "Competences",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_ComptenceDmExpertises_DomaineExpertises_IdDmexpertiseNavigationId",
-                        column: x => x.IdDmexpertiseNavigationId,
-                        principalTable: "DomaineExpertises",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "CompetenceOffres",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    IdCompetence = table.Column<int>(type: "int", nullable: true),
-                    IdOffre = table.Column<int>(type: "int", nullable: true),
-                    IdCompetenceNavigationId = table.Column<int>(type: "int", nullable: true),
-                    IdOffreNavigationId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_CompetenceOffres", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_CompetenceOffres_Competences_IdCompetenceNavigationId",
-                        column: x => x.IdCompetenceNavigationId,
-                        principalTable: "Competences",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_CompetenceOffres_Offres_IdOffreNavigationId",
-                        column: x => x.IdOffreNavigationId,
-                        principalTable: "Offres",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "CondidatComps",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Niveau = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    IdComp = table.Column<int>(type: "int", nullable: true),
-                    IdCond = table.Column<int>(type: "int", nullable: true),
-                    IdCompNavigationId = table.Column<int>(type: "int", nullable: true),
-                    IdCondNavigationId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_CondidatComps", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_CondidatComps_Competences_IdCompNavigationId",
-                        column: x => x.IdCompNavigationId,
-                        principalTable: "Competences",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_CondidatComps_Condidats_IdCondNavigationId",
-                        column: x => x.IdCondNavigationId,
-                        principalTable: "Condidats",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Experiences",
                 columns: table => new
                 {
@@ -411,6 +315,32 @@ namespace Freelance.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ComptenceDmExpertises",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IdCompetence = table.Column<int>(type: "int", nullable: true),
+                    IdDmexpertise = table.Column<int>(type: "int", nullable: true),
+                    IdCompetenceNavigationId = table.Column<int>(type: "int", nullable: true),
+                    IdDmexpertiseNavigationId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ComptenceDmExpertises", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ComptenceDmExpertises_Competences_IdCompetenceNavigationId",
+                        column: x => x.IdCompetenceNavigationId,
+                        principalTable: "Competences",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_ComptenceDmExpertises_DomaineExpertises_IdDmexpertiseNavigationId",
+                        column: x => x.IdDmexpertiseNavigationId,
+                        principalTable: "DomaineExpertises",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "ConsultaionProfils",
                 columns: table => new
                 {
@@ -464,14 +394,73 @@ namespace Freelance.Infrastructure.Migrations
                         principalColumn: "Id");
                 });
 
+            migrationBuilder.CreateTable(
+                name: "CompetenceOffres",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IdCompetence = table.Column<int>(type: "int", nullable: true),
+                    IdOffre = table.Column<int>(type: "int", nullable: true),
+                    IdCompetenceNavigationId = table.Column<int>(type: "int", nullable: true),
+                    IdOffreNavigationId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CompetenceOffres", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_CompetenceOffres_Competences_IdCompetenceNavigationId",
+                        column: x => x.IdCompetenceNavigationId,
+                        principalTable: "Competences",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_CompetenceOffres_Offres_IdOffreNavigationId",
+                        column: x => x.IdOffreNavigationId,
+                        principalTable: "Offres",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CondidatComps",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Niveau = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IdComp = table.Column<int>(type: "int", nullable: true),
+                    IdCond = table.Column<int>(type: "int", nullable: true),
+                    IdCompNavigationId = table.Column<int>(type: "int", nullable: true),
+                    IdCondNavigationId = table.Column<int>(type: "int", nullable: true),
+                    CompetenceId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CondidatComps", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_CondidatComps_Competences_CompetenceId",
+                        column: x => x.CompetenceId,
+                        principalTable: "Competences",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_CondidatComps_ComptenceDmExpertises_IdCompNavigationId",
+                        column: x => x.IdCompNavigationId,
+                        principalTable: "ComptenceDmExpertises",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_CondidatComps_Condidats_IdCondNavigationId",
+                        column: x => x.IdCondNavigationId,
+                        principalTable: "Condidats",
+                        principalColumn: "Id");
+                });
+
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "062f72c8-5f01-425c-9739-5ccc7c02b671", "3", "Entreprise", "ENTREPRISE" },
-                    { "064b05df-11cc-4c09-a988-4d4e06c3270c", "1", "Admin", "ADMIN" },
-                    { "96db3c10-0429-4e7a-878f-5c8d088d3ed4", "2", "Candidat", "CANDIDAT" }
+                    { "7aae7b6d-a50e-45ec-8e49-740b61929bfe", "2", "Candidat", "CANDIDAT" },
+                    { "9529778e-4fa8-4119-86b1-4742d2ce7e31", "3", "Entreprise", "ENTREPRISE" },
+                    { "ed6875c6-b1c0-40fc-a6bc-7388236630f1", "1", "Admin", "ADMIN" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -534,6 +523,11 @@ namespace Freelance.Infrastructure.Migrations
                 column: "IdDmexpertiseNavigationId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_CondidatComps_CompetenceId",
+                table: "CondidatComps",
+                column: "CompetenceId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_CondidatComps_IdCompNavigationId",
                 table: "CondidatComps",
                 column: "IdCompNavigationId");
@@ -544,12 +538,6 @@ namespace Freelance.Infrastructure.Migrations
                 column: "IdCondNavigationId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Condidats_ApplicationUserId",
-                table: "Condidats",
-                column: "ApplicationUserId",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
                 name: "IX_ConsultaionProfils_IdCondidatNavigationId",
                 table: "ConsultaionProfils",
                 column: "IdCondidatNavigationId");
@@ -558,12 +546,6 @@ namespace Freelance.Infrastructure.Migrations
                 name: "IX_ConsultaionProfils_IdEntrepriseNavigationId",
                 table: "ConsultaionProfils",
                 column: "IdEntrepriseNavigationId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Entreprises_ApplicationUserId",
-                table: "Entreprises",
-                column: "ApplicationUserId",
-                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Experiences_IdCondidatNavigationId",
@@ -613,9 +595,6 @@ namespace Freelance.Infrastructure.Migrations
                 name: "CompetenceOffres");
 
             migrationBuilder.DropTable(
-                name: "ComptenceDmExpertises");
-
-            migrationBuilder.DropTable(
                 name: "CondidatComps");
 
             migrationBuilder.DropTable(
@@ -637,13 +616,13 @@ namespace Freelance.Infrastructure.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
+                name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
                 name: "Offres");
 
             migrationBuilder.DropTable(
-                name: "DomaineExpertises");
-
-            migrationBuilder.DropTable(
-                name: "Competences");
+                name: "ComptenceDmExpertises");
 
             migrationBuilder.DropTable(
                 name: "Entreprises");
@@ -652,7 +631,10 @@ namespace Freelance.Infrastructure.Migrations
                 name: "Condidats");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
+                name: "Competences");
+
+            migrationBuilder.DropTable(
+                name: "DomaineExpertises");
         }
     }
 }
