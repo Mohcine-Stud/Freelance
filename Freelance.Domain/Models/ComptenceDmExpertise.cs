@@ -8,7 +8,7 @@ public partial class ComptenceDmExpertise
 
     public int? IdDmexpertise { get; set; }
 
-    public virtual ComptenceDmExpertise? IdCompetenceNavigation { get; set; }
+    public virtual Competence? IdCompetenceNavigation { get; set; }
 
     public virtual DomaineExpertise? IdDmexpertiseNavigation { get; set; }
 }
