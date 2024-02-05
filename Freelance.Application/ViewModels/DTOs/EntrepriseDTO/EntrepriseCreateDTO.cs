@@ -14,4 +14,6 @@ public partial class EntrepriseCreateDTO
     public string? Adresse { get; set; }
 
     public string? Ville { get; set; }
+    public string ApplicationUserId { get; set; }
+    public ApplicationUser ApplicationUser { get; set; }
 }

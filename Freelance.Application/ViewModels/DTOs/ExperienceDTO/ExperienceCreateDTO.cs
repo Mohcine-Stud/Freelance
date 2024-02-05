@@ -17,5 +17,4 @@ public partial class ExperienceCreateDTO
     public DateTime? DateFin { get; set; }
 
     public int? IdCondidat { get; set; }
-
 }

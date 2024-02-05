@@ -35,7 +35,7 @@ public static class DependencyInjection
         services.AddScoped<ICandidateService, CandidatService>();
         services.AddScoped<ICompetenceService, CompetenceService>();
         services.AddScoped<ICompetenceOffreSevice, CompetenceOffreService>();
-        //services.AddScoped<IComptenceDmExpertiseService, ComptenceDmExpertiseService>();
+        services.AddScoped<IComptenceDmExpertiseService, ComptenceDmExpertiseService>();
         services.AddScoped<ICondidatCompService, CondidatCompService>();
         services.AddScoped<IConsultaionProfilService, ConsultaionProfilService>();
         services.AddScoped<IDomaineExpertiseService, DomaineExpertiseService>();
