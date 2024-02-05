@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Freelance.Application.Services.Condidate.ProjetService
 {
-    internal class ProjetService : IProjetService
+    public class ProjetService : IProjetService
     {
         readonly IGenericRepository<ProjetDTO> _projectService;
         private readonly IMapper _mapper;

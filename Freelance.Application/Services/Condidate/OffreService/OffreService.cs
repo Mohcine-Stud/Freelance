@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Freelance.Application.Services.Condidate.OffreService;
 
-internal class OffreService : IOffreService
+^public class OffreService : IOffreService
 {
 
     private readonly IGenericRepository<Offre> _offreService;
