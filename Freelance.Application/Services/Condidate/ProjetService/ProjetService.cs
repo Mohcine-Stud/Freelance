@@ -1,22 +1,17 @@
 ﻿using AutoMapper;
 using Freelance.Application.Persistence.IRepositories;
-using Freelance.Application.ViewModels.DTOs.CompeteceDmExpertiseDTO;
 using Freelance.Application.ViewModels.DTOs.ProjetDTO;
 using Freelance.Domain.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Freelance.Application.Services.Condidate.ProjetService
 {
     public class ProjetService : IProjetService
     {
-        readonly IGenericRepository<ProjetDTO> _projectService;
+        readonly IGenericRepository<Projet> _projectService;
         private readonly IMapper _mapper;
 
-        public ProjetService(IGenericRepository<ProjetDTO> projectService, IMapper mapper)
+        public ProjetService(IGenericRepository<Projet> projectService, IMapper mapper)
         {
             _mapper = mapper;
             _projectService = projectService;
@@ -24,7 +19,7 @@ namespace Freelance.Application.Services.Condidate.ProjetService
 
         public async Task<ProjetDTO> CreateAsync(ProjetCreateDTO entity)
         {
-            var competenceDmExpertise = _mapper.Map<ProjetDTO>(entity);
+            var competenceDmExpertise = _mapper.Map<Projet>(entity);
             var createdcompetenceDm = await _projectService.PostAsync(competenceDmExpertise);
             return _mapper.Map<ProjetDTO>(createdcompetenceDm);
         }
@@ -58,6 +53,13 @@ namespace Freelance.Application.Services.Condidate.ProjetService
             _mapper.Map(entity, existingcompetenceDm);
             await _projectService.PutAsync(id, existingcompetenceDm);
             return _mapper.Map<ProjetDTO>(existingcompetenceDm);
+        }
+
+        public async Task<IEnumerable<ProjetDTO>> CreateRangeAsync(IEnumerable<ProjetCreateDTO> entities)
+        {
+            var Entities = _mapper.Map<IEnumerable<Projet>>(entities);
+            var createdEntity = await _projectService.PostRangeAsync(Entities);
+            return _mapper.Map<IEnumerable<ProjetDTO>>(createdEntity);
         }
     }
 }
