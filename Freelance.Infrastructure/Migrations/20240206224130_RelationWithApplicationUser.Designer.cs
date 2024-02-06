@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Freelance.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240206210721_RelationWithApplicationUser")]
+    [Migration("20240206224130_RelationWithApplicationUser")]
     partial class RelationWithApplicationUser
     {
         /// <inheritdoc />
@@ -473,21 +473,21 @@ namespace Freelance.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "8a4e9722-7c43-4db5-bd6e-3a2e2c7ec818",
+                            Id = "436c43ab-379c-4ee0-b2e0-a2d454240e53",
                             ConcurrencyStamp = "1",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "20bd0d45-d5a2-402d-81d9-fc774238b500",
+                            Id = "a8b8d9e5-1a80-470a-a2cc-20bcc3f96486",
                             ConcurrencyStamp = "2",
                             Name = "Candidat",
                             NormalizedName = "CANDIDAT"
                         },
                         new
                         {
-                            Id = "f24038af-4260-447e-aded-faf01afd5b22",
+                            Id = "5fc42682-35e7-4935-bfb5-0b0cb8cd3c15",
                             ConcurrencyStamp = "3",
                             Name = "Entreprise",
                             NormalizedName = "ENTREPRISE"

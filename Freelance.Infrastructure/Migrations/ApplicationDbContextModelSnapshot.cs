@@ -33,6 +33,10 @@ namespace Freelance.Infrastructure.Migrations
                     b.Property<string>("Adresse")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ApplicationUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("Avatar")
                         .HasColumnType("nvarchar(max)");
 
@@ -67,6 +71,9 @@ namespace Freelance.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId")
+                        .IsUnique();
 
                     b.ToTable("Condidats");
                 });
@@ -233,6 +240,10 @@ namespace Freelance.Infrastructure.Migrations
                     b.Property<string>("Adresse")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ApplicationUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<DateTime?>("DateCreation")
                         .HasColumnType("datetime2");
 
@@ -246,6 +257,9 @@ namespace Freelance.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId")
+                        .IsUnique();
 
                     b.ToTable("Entreprises");
                 });
@@ -456,21 +470,21 @@ namespace Freelance.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "7ade529e-d6e8-44fb-b310-a5a41e47b511",
+                            Id = "436c43ab-379c-4ee0-b2e0-a2d454240e53",
                             ConcurrencyStamp = "1",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "220edbd9-d32e-466e-a825-c748a26c992d",
+                            Id = "a8b8d9e5-1a80-470a-a2cc-20bcc3f96486",
                             ConcurrencyStamp = "2",
                             Name = "Candidat",
                             NormalizedName = "CANDIDAT"
                         },
                         new
                         {
-                            Id = "5c2e1387-3821-418c-af9a-e2c7da633ae7",
+                            Id = "5fc42682-35e7-4935-bfb5-0b0cb8cd3c15",
                             ConcurrencyStamp = "3",
                             Name = "Entreprise",
                             NormalizedName = "ENTREPRISE"
@@ -512,6 +526,10 @@ namespace Freelance.Infrastructure.Migrations
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
@@ -565,6 +583,10 @@ namespace Freelance.Infrastructure.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
+
+                    b.UseTphMappingStrategy();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -648,6 +670,38 @@ namespace Freelance.Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("Freelance.Domain.Models.ApplicationUser", b =>
+                {
+                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
+
+                    b.Property<string>("CandidatId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EntrepriseId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasDiscriminator().HasValue("ApplicationUser");
+                });
+
+            modelBuilder.Entity("Freelance.Domain.Models.Candidat", b =>
+                {
+                    b.HasOne("Freelance.Domain.Models.ApplicationUser", "ApplicationUser")
+                        .WithOne("Candidat")
+                        .HasForeignKey("Freelance.Domain.Models.Candidat", "ApplicationUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ApplicationUser");
+                });
+
             modelBuilder.Entity("Freelance.Domain.Models.CompetenceOffre", b =>
                 {
                     b.HasOne("Freelance.Domain.Models.Competence", "IdCompetenceNavigation")
@@ -706,6 +760,17 @@ namespace Freelance.Infrastructure.Migrations
                     b.Navigation("IdCondidatNavigation");
 
                     b.Navigation("IdEntrepriseNavigation");
+                });
+
+            modelBuilder.Entity("Freelance.Domain.Models.Entreprise", b =>
+                {
+                    b.HasOne("Freelance.Domain.Models.ApplicationUser", "ApplicationUser")
+                        .WithOne("Entreprise")
+                        .HasForeignKey("Freelance.Domain.Models.Entreprise", "ApplicationUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ApplicationUser");
                 });
 
             modelBuilder.Entity("Freelance.Domain.Models.Experience", b =>
@@ -840,6 +905,13 @@ namespace Freelance.Infrastructure.Migrations
             modelBuilder.Entity("Freelance.Domain.Models.Offre", b =>
                 {
                     b.Navigation("CompetenceOffres");
+                });
+
+            modelBuilder.Entity("Freelance.Domain.Models.ApplicationUser", b =>
+                {
+                    b.Navigation("Candidat");
+
+                    b.Navigation("Entreprise");
                 });
 #pragma warning restore 612, 618
         }

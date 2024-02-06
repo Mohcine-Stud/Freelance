@@ -473,9 +473,9 @@ namespace Freelance.Infrastructure.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "20bd0d45-d5a2-402d-81d9-fc774238b500", "2", "Candidat", "CANDIDAT" },
-                    { "8a4e9722-7c43-4db5-bd6e-3a2e2c7ec818", "1", "Admin", "ADMIN" },
-                    { "f24038af-4260-447e-aded-faf01afd5b22", "3", "Entreprise", "ENTREPRISE" }
+                    { "436c43ab-379c-4ee0-b2e0-a2d454240e53", "1", "Admin", "ADMIN" },
+                    { "5fc42682-35e7-4935-bfb5-0b0cb8cd3c15", "3", "Entreprise", "ENTREPRISE" },
+                    { "a8b8d9e5-1a80-470a-a2cc-20bcc3f96486", "2", "Candidat", "CANDIDAT" }
                 });
 
             migrationBuilder.CreateIndex(

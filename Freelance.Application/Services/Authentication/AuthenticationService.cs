@@ -91,8 +91,8 @@ public class AuthenticationService : IAuthenticationService
         return new AuthenticationResponse
         {
             Id = registredUserId,
-            FirstName = registredCandidat.FirstName??user.UserName,
-            LastName = registredCandidat.LastName?? user.UserName,
+            FirstName = registredCandidat?.FirstName ?? user.UserName,
+            LastName = registredCandidat?.LastName ?? user.UserName,
             Email = query.Email,
             ISAuthenticated = true,
             Token = token,
