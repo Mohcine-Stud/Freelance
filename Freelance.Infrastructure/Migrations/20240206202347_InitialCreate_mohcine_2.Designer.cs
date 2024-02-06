@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Freelance.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240206181546_InitialCreate_mohcine")]
-    partial class InitialCreate_mohcine
+    [Migration("20240206202347_InitialCreate_mohcine_2")]
+    partial class InitialCreate_mohcine_2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -459,21 +459,21 @@ namespace Freelance.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "7ade529e-d6e8-44fb-b310-a5a41e47b511",
+                            Id = "10ec0529-3f04-436b-9c46-10fbae3a5957",
                             ConcurrencyStamp = "1",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "220edbd9-d32e-466e-a825-c748a26c992d",
+                            Id = "02ef1de3-3b96-440f-af37-306b2a151b44",
                             ConcurrencyStamp = "2",
                             Name = "Candidat",
                             NormalizedName = "CANDIDAT"
                         },
                         new
                         {
-                            Id = "5c2e1387-3821-418c-af9a-e2c7da633ae7",
+                            Id = "d6d46725-bcdd-403b-8703-53b4fe876779",
                             ConcurrencyStamp = "3",
                             Name = "Entreprise",
                             NormalizedName = "ENTREPRISE"

@@ -12,7 +12,7 @@ using Freelance.Application.Services.Condidate.ComptenceDmExpertiseService;
 using Freelance.Application.Services.Condidate.CondidatCompService;
 using Freelance.Application.Services.Condidate.ConsultaionProfilService;
 using Freelance.Application.Services.Condidate.DomaineExpertiseService;
-using Freelance.Application.Services.Entreprise.EntrepriseService;
+using Freelance.Application.Services.EntrepriseServices.EntrepriseService;
 using Freelance.Application.Services.Condidate.FormationService;
 using Freelance.Application.Services.Condidate.ProjetService;
 

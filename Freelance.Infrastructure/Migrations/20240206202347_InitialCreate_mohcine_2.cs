@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Freelance.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate_mohcine : Migration
+    public partial class InitialCreate_mohcine_2 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -454,9 +454,9 @@ namespace Freelance.Infrastructure.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "220edbd9-d32e-466e-a825-c748a26c992d", "2", "Candidat", "CANDIDAT" },
-                    { "5c2e1387-3821-418c-af9a-e2c7da633ae7", "3", "Entreprise", "ENTREPRISE" },
-                    { "7ade529e-d6e8-44fb-b310-a5a41e47b511", "1", "Admin", "ADMIN" }
+                    { "02ef1de3-3b96-440f-af37-306b2a151b44", "2", "Candidat", "CANDIDAT" },
+                    { "10ec0529-3f04-436b-9c46-10fbae3a5957", "1", "Admin", "ADMIN" },
+                    { "d6d46725-bcdd-403b-8703-53b4fe876779", "3", "Entreprise", "ENTREPRISE" }
                 });
 
             migrationBuilder.CreateIndex(
