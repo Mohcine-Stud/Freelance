@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Freelance.Application.Services.Condidate.ConsultaionProfilService;
 
-internal interface IConsultaionProfilService
+public interface IConsultaionProfilService
 {
     Task<ConsultaionProfilDTO> FindByIdAsync(int id);
     Task<List<ConsultaionProfilDTO>> FindAllAsync();
