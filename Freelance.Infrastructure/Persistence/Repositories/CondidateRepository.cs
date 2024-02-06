@@ -30,5 +30,18 @@ internal class CondidateRepository : ICondidatRepository
             .FirstOrDefaultAsync();
     }
 
+    public async Task<List<Candidat>> GetAllCandidatsWithDetailsAsync()
+    {
+        var candidats = await _db.Set<Candidat>()
+            .Include(c => c.CondidatComps)
+            .Include(c => c.Experiences)
+            .Include(c => c.Formations)
+            .Include(c => c.Projets)
+            // Include other related entities as needed
+            .ToListAsync();
+
+        return candidats;
+    }
+
 }
 

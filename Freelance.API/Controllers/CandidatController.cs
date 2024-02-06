@@ -80,10 +80,46 @@ public class CandidatController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetAll()
+    public async Task<ActionResult<List<CandidatDTO>>> GetAll()
     {
-        var condidatDTO = await _condidateService.FindAllAsync();
-        return Ok(condidatDTO);
+        var candidats = await _condidateService.GetAllCandidatsWithDetailsAsync();
+
+        var candidatDtos = candidats.Select(c => new CandidatDTO
+        {
+            Id = c.Id,
+            FirstName = c.FirstName,
+            // Map other properties
+
+            CondidatComps = c.CondidatComps.Select(cc => new CondidatCompGetDTO
+            {
+                Id = cc.Id,
+                Niveau = cc.Niveau,
+                // Map other properties
+            }).ToList(),
+
+            Experiences = c.Experiences.Select(e => new ExperienceGetDTO
+            {
+                Id = e.Id,
+                Titre = e.Titre,
+                // Map other properties
+            }).ToList(),
+
+            Formations = c.Formations.Select(f => new FormationGetDTO
+            {
+                Id = f.Id,
+                Niveau = f.Niveau,
+                // Map other properties
+            }).ToList(),
+
+            Projets = c.Projets.Select(p => new ProjetGetDTO
+            {
+                Id = p.Id,
+                Nom = p.Nom,
+                // Map other properties
+            }).ToList(),
+        }).ToList();
+
+        return Ok(candidatDtos);
     }
 
     [HttpPost]

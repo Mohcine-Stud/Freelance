@@ -10,4 +10,5 @@ namespace Freelance.Application.Persistence.IRepositories;
 public interface ICondidatRepository
 {
     Task<Candidat> GetCandidatWithDetailsAsync(int candidatId);
+    Task<List<Candidat>> GetAllCandidatsWithDetailsAsync();
 }

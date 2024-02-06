@@ -61,5 +61,10 @@ namespace Freelance.Application.Services.Condidate.CandidatService
         {
             return await _condidateRepositoryTwo.GetCandidatWithDetailsAsync(candidatId);
         }
+
+        public async Task<List<Candidat>> GetAllCandidatsWithDetailsAsync()
+        {
+            return await _condidateRepositoryTwo.GetAllCandidatsWithDetailsAsync();
+        }
     }
 }

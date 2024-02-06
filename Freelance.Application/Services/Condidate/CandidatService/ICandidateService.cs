@@ -10,5 +10,6 @@ public interface ICandidateService
     Task<CandidatDTO> CreateAsync(CandidatCreateDTO entity);
     Task<CandidatDTO> UpdateAsync(int id, CandidatUpdateDTO entity);
     Task<Candidat> GetCandidatWithDetailsAsync(int candidatId);
+    Task<List<Candidat>> GetAllCandidatsWithDetailsAsync();
     Task DeleteAsync(int id);
 }
