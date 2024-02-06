@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Freelance.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240205141101_AspNetUserFixed")]
-    partial class AspNetUserFixed
+    [Migration("20240206145915_inital_create")]
+    partial class inital_create
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -147,13 +147,7 @@ namespace Freelance.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("CompetenceId")
-                        .HasColumnType("int");
-
                     b.Property<int?>("IdComp")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("IdCompNavigationId")
                         .HasColumnType("int");
 
                     b.Property<int?>("IdCond")
@@ -167,9 +161,7 @@ namespace Freelance.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CompetenceId");
-
-                    b.HasIndex("IdCompNavigationId");
+                    b.HasIndex("IdComp");
 
                     b.HasIndex("IdCondNavigationId");
 
@@ -458,21 +450,21 @@ namespace Freelance.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "ed6875c6-b1c0-40fc-a6bc-7388236630f1",
+                            Id = "314c6e1c-0be4-4972-a877-734c527e9897",
                             ConcurrencyStamp = "1",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "7aae7b6d-a50e-45ec-8e49-740b61929bfe",
+                            Id = "bc3ddeab-fe2b-4d31-8905-aedda83f14e3",
                             ConcurrencyStamp = "2",
                             Name = "Candidat",
                             NormalizedName = "CANDIDAT"
                         },
                         new
                         {
-                            Id = "9529778e-4fa8-4119-86b1-4742d2ce7e31",
+                            Id = "cd43b522-df06-4911-9b13-d1051530fa5e",
                             ConcurrencyStamp = "3",
                             Name = "Entreprise",
                             NormalizedName = "ENTREPRISE"
@@ -682,13 +674,9 @@ namespace Freelance.Infrastructure.Migrations
 
             modelBuilder.Entity("Freelance.Domain.Models.CondidatComp", b =>
                 {
-                    b.HasOne("Freelance.Domain.Models.Competence", null)
+                    b.HasOne("Freelance.Domain.Models.Competence", "IdCompNavigation")
                         .WithMany("CondidatComps")
-                        .HasForeignKey("CompetenceId");
-
-                    b.HasOne("Freelance.Domain.Models.ComptenceDmExpertise", "IdCompNavigation")
-                        .WithMany()
-                        .HasForeignKey("IdCompNavigationId");
+                        .HasForeignKey("IdComp");
 
                     b.HasOne("Freelance.Domain.Models.Candidat", "IdCondNavigation")
                         .WithMany("CondidatComps")

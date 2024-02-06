@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Freelance.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class AspNetUserFixed : Migration
+    public partial class inital_create : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -242,6 +242,32 @@ namespace Freelance.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "CondidatComps",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Niveau = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IdComp = table.Column<int>(type: "int", nullable: true),
+                    IdCond = table.Column<int>(type: "int", nullable: true),
+                    IdCondNavigationId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CondidatComps", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_CondidatComps_Competences_IdComp",
+                        column: x => x.IdComp,
+                        principalTable: "Competences",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_CondidatComps_Condidats_IdCondNavigationId",
+                        column: x => x.IdCondNavigationId,
+                        principalTable: "Condidats",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Experiences",
                 columns: table => new
                 {
@@ -420,47 +446,14 @@ namespace Freelance.Infrastructure.Migrations
                         principalColumn: "Id");
                 });
 
-            migrationBuilder.CreateTable(
-                name: "CondidatComps",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Niveau = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    IdComp = table.Column<int>(type: "int", nullable: true),
-                    IdCond = table.Column<int>(type: "int", nullable: true),
-                    IdCompNavigationId = table.Column<int>(type: "int", nullable: true),
-                    IdCondNavigationId = table.Column<int>(type: "int", nullable: true),
-                    CompetenceId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_CondidatComps", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_CondidatComps_Competences_CompetenceId",
-                        column: x => x.CompetenceId,
-                        principalTable: "Competences",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_CondidatComps_ComptenceDmExpertises_IdCompNavigationId",
-                        column: x => x.IdCompNavigationId,
-                        principalTable: "ComptenceDmExpertises",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_CondidatComps_Condidats_IdCondNavigationId",
-                        column: x => x.IdCondNavigationId,
-                        principalTable: "Condidats",
-                        principalColumn: "Id");
-                });
-
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "7aae7b6d-a50e-45ec-8e49-740b61929bfe", "2", "Candidat", "CANDIDAT" },
-                    { "9529778e-4fa8-4119-86b1-4742d2ce7e31", "3", "Entreprise", "ENTREPRISE" },
-                    { "ed6875c6-b1c0-40fc-a6bc-7388236630f1", "1", "Admin", "ADMIN" }
+                    { "314c6e1c-0be4-4972-a877-734c527e9897", "1", "Admin", "ADMIN" },
+                    { "bc3ddeab-fe2b-4d31-8905-aedda83f14e3", "2", "Candidat", "CANDIDAT" },
+                    { "cd43b522-df06-4911-9b13-d1051530fa5e", "3", "Entreprise", "ENTREPRISE" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -523,14 +516,9 @@ namespace Freelance.Infrastructure.Migrations
                 column: "IdDmexpertiseNavigationId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CondidatComps_CompetenceId",
+                name: "IX_CondidatComps_IdComp",
                 table: "CondidatComps",
-                column: "CompetenceId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_CondidatComps_IdCompNavigationId",
-                table: "CondidatComps",
-                column: "IdCompNavigationId");
+                column: "IdComp");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CondidatComps_IdCondNavigationId",
@@ -595,6 +583,9 @@ namespace Freelance.Infrastructure.Migrations
                 name: "CompetenceOffres");
 
             migrationBuilder.DropTable(
+                name: "ComptenceDmExpertises");
+
+            migrationBuilder.DropTable(
                 name: "CondidatComps");
 
             migrationBuilder.DropTable(
@@ -622,19 +613,16 @@ namespace Freelance.Infrastructure.Migrations
                 name: "Offres");
 
             migrationBuilder.DropTable(
-                name: "ComptenceDmExpertises");
+                name: "DomaineExpertises");
+
+            migrationBuilder.DropTable(
+                name: "Competences");
 
             migrationBuilder.DropTable(
                 name: "Entreprises");
 
             migrationBuilder.DropTable(
                 name: "Condidats");
-
-            migrationBuilder.DropTable(
-                name: "Competences");
-
-            migrationBuilder.DropTable(
-                name: "DomaineExpertises");
         }
     }
 }

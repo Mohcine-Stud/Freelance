@@ -29,6 +29,11 @@ public class ApplicationDbContext : IdentityDbContext<IdentityUser>
         //    .HasForeignKey<Entreprise>(e => e.ApplicationUserId)
         //    .IsRequired();
 
+        modelBuilder.Entity<CondidatComp>()
+                   .HasOne(cc => cc.IdCompNavigation)
+                   .WithMany(c => c.CondidatComps)
+                   .HasForeignKey(cc => cc.IdComp);
+
 
     }
 
