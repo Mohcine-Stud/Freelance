@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Freelance.Application.Services.Condidate.OffreService;
 
-internal interface IOffreService
+public interface IOffreService
 {
     Task<OffreDTO> FindByIdAsync(int id);
     Task<List<OffreDTO>> FindAllAsync();
