@@ -7,8 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 namespace Freelance.API.Controllers
 {
 
-   
 
+    [Route("api/[controller]")]
+    [ApiController]
     public class ProjetController : ControllerBase
     {
         private readonly IProjetService _projetService;

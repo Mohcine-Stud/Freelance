@@ -1,8 +1,5 @@
 ﻿using Freelance.Application.Services.Condidate.CompetenceOffreService;
-using Freelance.Application.ViewModels.DTOs.CompetenceDTO;
 using Freelance.Application.ViewModels.DTOs.CompetenceOffreDTO;
-using Freelance.Application.ViewModels.DTOs.CondidateDTO;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Freelance.API.Controllers

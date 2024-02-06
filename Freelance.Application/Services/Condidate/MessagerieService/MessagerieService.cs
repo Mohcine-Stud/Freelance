@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Freelance.Application.Services.Condidate.MessagerieService;
 
-internal class MessagerieService : IMessagerieService
+public class MessagerieService : IMessagerieService
 {
 
     readonly IGenericRepository<Messagerie> _messagrieService;
