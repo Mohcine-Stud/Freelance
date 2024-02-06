@@ -17,12 +17,10 @@ public partial class CondidatComp
 
     public CondidatComp(
         string? niveau, 
-        int? idComp, 
-        Competence? idCompNavigation
+        int? idComp
         )
     {
         Niveau = niveau;
         IdComp = idComp;
-        IdCompNavigation = idCompNavigation;
     }
 }

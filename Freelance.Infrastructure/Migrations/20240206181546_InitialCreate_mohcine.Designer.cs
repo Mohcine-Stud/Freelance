@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Freelance.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240205141101_AspNetUserFixed")]
-    partial class AspNetUserFixed
+    [Migration("20240206181546_InitialCreate_mohcine")]
+    partial class InitialCreate_mohcine
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -45,7 +45,16 @@ namespace Freelance.Infrastructure.Migrations
                     b.Property<string>("Disponibilite")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Gender")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Mobilite")
@@ -147,13 +156,7 @@ namespace Freelance.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("CompetenceId")
-                        .HasColumnType("int");
-
                     b.Property<int?>("IdComp")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("IdCompNavigationId")
                         .HasColumnType("int");
 
                     b.Property<int?>("IdCond")
@@ -167,9 +170,7 @@ namespace Freelance.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CompetenceId");
-
-                    b.HasIndex("IdCompNavigationId");
+                    b.HasIndex("IdComp");
 
                     b.HasIndex("IdCondNavigationId");
 
@@ -458,21 +459,21 @@ namespace Freelance.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "ed6875c6-b1c0-40fc-a6bc-7388236630f1",
+                            Id = "7ade529e-d6e8-44fb-b310-a5a41e47b511",
                             ConcurrencyStamp = "1",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "7aae7b6d-a50e-45ec-8e49-740b61929bfe",
+                            Id = "220edbd9-d32e-466e-a825-c748a26c992d",
                             ConcurrencyStamp = "2",
                             Name = "Candidat",
                             NormalizedName = "CANDIDAT"
                         },
                         new
                         {
-                            Id = "9529778e-4fa8-4119-86b1-4742d2ce7e31",
+                            Id = "5c2e1387-3821-418c-af9a-e2c7da633ae7",
                             ConcurrencyStamp = "3",
                             Name = "Entreprise",
                             NormalizedName = "ENTREPRISE"
@@ -682,13 +683,9 @@ namespace Freelance.Infrastructure.Migrations
 
             modelBuilder.Entity("Freelance.Domain.Models.CondidatComp", b =>
                 {
-                    b.HasOne("Freelance.Domain.Models.Competence", null)
+                    b.HasOne("Freelance.Domain.Models.Competence", "IdCompNavigation")
                         .WithMany("CondidatComps")
-                        .HasForeignKey("CompetenceId");
-
-                    b.HasOne("Freelance.Domain.Models.ComptenceDmExpertise", "IdCompNavigation")
-                        .WithMany()
-                        .HasForeignKey("IdCompNavigationId");
+                        .HasForeignKey("IdComp");
 
                     b.HasOne("Freelance.Domain.Models.Candidat", "IdCondNavigation")
                         .WithMany("CondidatComps")

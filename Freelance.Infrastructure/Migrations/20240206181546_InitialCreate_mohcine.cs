@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Freelance.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class AspNetUserFixed : Migration
+    public partial class InitialCreate_mohcine : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -71,6 +71,9 @@ namespace Freelance.Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Titre = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Gender = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Avatar = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -239,6 +242,32 @@ namespace Freelance.Infrastructure.Migrations
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CondidatComps",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Niveau = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IdComp = table.Column<int>(type: "int", nullable: true),
+                    IdCond = table.Column<int>(type: "int", nullable: true),
+                    IdCondNavigationId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CondidatComps", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_CondidatComps_Competences_IdComp",
+                        column: x => x.IdComp,
+                        principalTable: "Competences",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_CondidatComps_Condidats_IdCondNavigationId",
+                        column: x => x.IdCondNavigationId,
+                        principalTable: "Condidats",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -420,47 +449,14 @@ namespace Freelance.Infrastructure.Migrations
                         principalColumn: "Id");
                 });
 
-            migrationBuilder.CreateTable(
-                name: "CondidatComps",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Niveau = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    IdComp = table.Column<int>(type: "int", nullable: true),
-                    IdCond = table.Column<int>(type: "int", nullable: true),
-                    IdCompNavigationId = table.Column<int>(type: "int", nullable: true),
-                    IdCondNavigationId = table.Column<int>(type: "int", nullable: true),
-                    CompetenceId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_CondidatComps", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_CondidatComps_Competences_CompetenceId",
-                        column: x => x.CompetenceId,
-                        principalTable: "Competences",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_CondidatComps_ComptenceDmExpertises_IdCompNavigationId",
-                        column: x => x.IdCompNavigationId,
-                        principalTable: "ComptenceDmExpertises",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_CondidatComps_Condidats_IdCondNavigationId",
-                        column: x => x.IdCondNavigationId,
-                        principalTable: "Condidats",
-                        principalColumn: "Id");
-                });
-
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "7aae7b6d-a50e-45ec-8e49-740b61929bfe", "2", "Candidat", "CANDIDAT" },
-                    { "9529778e-4fa8-4119-86b1-4742d2ce7e31", "3", "Entreprise", "ENTREPRISE" },
-                    { "ed6875c6-b1c0-40fc-a6bc-7388236630f1", "1", "Admin", "ADMIN" }
+                    { "220edbd9-d32e-466e-a825-c748a26c992d", "2", "Candidat", "CANDIDAT" },
+                    { "5c2e1387-3821-418c-af9a-e2c7da633ae7", "3", "Entreprise", "ENTREPRISE" },
+                    { "7ade529e-d6e8-44fb-b310-a5a41e47b511", "1", "Admin", "ADMIN" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -523,14 +519,9 @@ namespace Freelance.Infrastructure.Migrations
                 column: "IdDmexpertiseNavigationId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CondidatComps_CompetenceId",
+                name: "IX_CondidatComps_IdComp",
                 table: "CondidatComps",
-                column: "CompetenceId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_CondidatComps_IdCompNavigationId",
-                table: "CondidatComps",
-                column: "IdCompNavigationId");
+                column: "IdComp");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CondidatComps_IdCondNavigationId",
@@ -595,6 +586,9 @@ namespace Freelance.Infrastructure.Migrations
                 name: "CompetenceOffres");
 
             migrationBuilder.DropTable(
+                name: "ComptenceDmExpertises");
+
+            migrationBuilder.DropTable(
                 name: "CondidatComps");
 
             migrationBuilder.DropTable(
@@ -622,19 +616,16 @@ namespace Freelance.Infrastructure.Migrations
                 name: "Offres");
 
             migrationBuilder.DropTable(
-                name: "ComptenceDmExpertises");
+                name: "DomaineExpertises");
+
+            migrationBuilder.DropTable(
+                name: "Competences");
 
             migrationBuilder.DropTable(
                 name: "Entreprises");
 
             migrationBuilder.DropTable(
                 name: "Condidats");
-
-            migrationBuilder.DropTable(
-                name: "Competences");
-
-            migrationBuilder.DropTable(
-                name: "DomaineExpertises");
         }
     }
 }

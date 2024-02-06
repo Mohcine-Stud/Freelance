@@ -3,7 +3,9 @@
 public  partial class Candidat
 {
     public int Id { get; set; }
-
+    public string? FirstName { get; set; }
+    public string? LastName { get; set; }
+    public string? Email { get; set; }
     public string? Titre { get; set; }
     public string? Gender { get; set; }
 
@@ -35,6 +37,9 @@ public  partial class Candidat
     public Candidat() { }
 
     public Candidat(
+        string firstName,
+        string lastName,
+        string email,
         string? titre,
         string? gender,
         string? avatar,
@@ -49,6 +54,9 @@ public  partial class Candidat
         ICollection<Formation> formations, 
         ICollection<Projet> projets)
     {
+        FirstName = firstName;
+        LastName = lastName;
+        Email = email;
         Titre = titre;
         Gender = gender;
         Avatar = avatar;
