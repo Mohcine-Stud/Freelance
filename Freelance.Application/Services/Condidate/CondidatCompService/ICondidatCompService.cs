@@ -10,9 +10,9 @@ namespace Freelance.Application.Services.Condidate.CondidatCompService;
 
 public interface ICondidatCompService
 {
-    Task<CondidatCompDTO> FindByIdAsync(int id);
-    Task<List<CondidatCompDTO>> FindAllAsync();
-    Task<CondidatCompDTO> CreateAsync(CondidatCompCreateDTO entity);
-    Task<CondidatCompDTO> UpdateAsync(int id, CondidatCompUpdateDTO entity);
+    Task<CondidatCompGetDTO> FindByIdAsync(int id);
+    Task<List<CondidatCompGetDTO>> FindAllAsync();
+    Task<CondidatCompGetDTO> CreateAsync(CondidatCompCreateDTO entity);
+    Task<CondidatCompGetDTO> UpdateAsync(int id, CondidatCompUpdateDTO entity);
     Task DeleteAsync(int id);
 }

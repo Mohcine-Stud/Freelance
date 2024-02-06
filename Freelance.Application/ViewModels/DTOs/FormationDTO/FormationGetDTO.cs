@@ -2,7 +2,7 @@
 
 namespace Freelance.Application.ViewModels.DTOs.FormationDTO;
 
-public partial class FormationDTO
+public partial class FormationGetDTO
 {
     public int Id { get; set; }
 

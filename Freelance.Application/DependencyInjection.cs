@@ -15,6 +15,7 @@ using Freelance.Application.Services.Condidate.DomaineExpertiseService;
 using Freelance.Application.Services.EntrepriseServices.EntrepriseService;
 using Freelance.Application.Services.Condidate.FormationService;
 using Freelance.Application.Services.Condidate.ProjetService;
+using Freelance.Application.Persistence.IRepositories;
 
 namespace Freelance.Application;
 
@@ -44,6 +45,7 @@ public static class DependencyInjection
         services.AddScoped<IFormationService, FormationService>();
         services.AddScoped<IOffreService, OffreService>();
         services.AddScoped<IProjetService, ProjetService>();
+
 
 
 

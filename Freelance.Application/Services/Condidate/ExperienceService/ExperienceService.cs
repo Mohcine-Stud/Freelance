@@ -17,11 +17,11 @@ internal class ExperienceService : IExperienceService
         _mapper = mapper;
     }
 
-    public async Task<ExperienceDTO> CreateAsync(ExperienceCreateDTO entity)
+    public async Task<ExperienceGetDTO> CreateAsync(ExperienceCreateDTO entity)
     {
         var experience = _mapper.Map<Experience>(entity);
         var createdExperience = await _experienceService.PostAsync(experience);
-        return _mapper.Map<ExperienceDTO>(createdExperience);
+        return _mapper.Map<ExperienceGetDTO>(createdExperience);
     }
 
     public async Task DeleteAsync(int id)
@@ -32,19 +32,19 @@ internal class ExperienceService : IExperienceService
         await _experienceService.DeleteAsync(id);
     }
 
-    public async Task<List<ExperienceDTO>> FindAllAsync()
+    public async Task<List<ExperienceGetDTO>> FindAllAsync()
     {
         var competenceDmExpertise = await _experienceService.GetAllAsync();
-        return _mapper.Map<List<ExperienceDTO>>(competenceDmExpertise);
+        return _mapper.Map<List<ExperienceGetDTO>>(competenceDmExpertise);
     }
 
-    public async Task<ExperienceDTO> FindByIdAsync(int id)
+    public async Task<ExperienceGetDTO> FindByIdAsync(int id)
     {
         var competenceDmExpertise = await _experienceService.GetAsync(id);
-        return _mapper.Map<ExperienceDTO>(competenceDmExpertise);
+        return _mapper.Map<ExperienceGetDTO>(competenceDmExpertise);
     }
 
-    public async Task<ExperienceDTO> UpdateAsync(int id, ExperienceUpdateDTO entity)
+    public async Task<ExperienceGetDTO> UpdateAsync(int id, ExperienceUpdateDTO entity)
     {
         var existingcompetenceDm = await _experienceService.GetAsync(id);
         if (existingcompetenceDm == null)
@@ -52,13 +52,13 @@ internal class ExperienceService : IExperienceService
 
         _mapper.Map(entity, existingcompetenceDm);
         await _experienceService.PutAsync(id, existingcompetenceDm);
-        return _mapper.Map<ExperienceDTO>(existingcompetenceDm);
+        return _mapper.Map<ExperienceGetDTO>(existingcompetenceDm);
     }
 
-    public async Task<IEnumerable<ExperienceDTO>> CreateRangeAsync(IEnumerable<ExperienceCreateDTO> entities)
+    public async Task<IEnumerable<ExperienceGetDTO>> CreateRangeAsync(IEnumerable<ExperienceCreateDTO> entities)
     {
         var experienceEntities = _mapper.Map<IEnumerable<Experience>>(entities);
         var createdExperience = await _experienceService.PostRangeAsync(experienceEntities);
-        return _mapper.Map<IEnumerable<ExperienceDTO>>(createdExperience);
+        return _mapper.Map<IEnumerable<ExperienceGetDTO>>(createdExperience);
     }
 }

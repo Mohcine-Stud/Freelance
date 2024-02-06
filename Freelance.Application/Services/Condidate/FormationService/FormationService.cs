@@ -23,28 +23,28 @@ public class FormationService : IFormationService
         _mapper = mapper;
     }
 
-    public async Task<FormationDTO> CreateAsync(FormationCreateDTO entity)
+    public async Task<FormationGetDTO> CreateAsync(FormationCreateDTO entity)
     {
         var Formation = _mapper.Map<Formation>(entity);
         var createdFormation = await _formationRepository.PostAsync(Formation);
-        return _mapper.Map<FormationDTO>(createdFormation);
+        return _mapper.Map<FormationGetDTO>(createdFormation);
     }
 
 
 
-    public async Task<List<FormationDTO>> FindAllAsync()
+    public async Task<List<FormationGetDTO>> FindAllAsync()
     {
         var candidat = await _formationRepository.GetAllAsync();
-        return _mapper.Map<List<FormationDTO>>(candidat);
+        return _mapper.Map<List<FormationGetDTO>>(candidat);
     }
 
-    public async Task<FormationDTO> FindByIdAsync(int id)
+    public async Task<FormationGetDTO> FindByIdAsync(int id)
     {
         var candidat = await _formationRepository.GetAsync(id);
-        return _mapper.Map<FormationDTO>(candidat);
+        return _mapper.Map<FormationGetDTO>(candidat);
     }
 
-    public async Task<FormationDTO> UpdateAsync(int id, FormationUpdateDTO entity)
+    public async Task<FormationGetDTO> UpdateAsync(int id, FormationUpdateDTO entity)
     {
         var existingCandidat = await _formationRepository.GetAsync(id);
         if (existingCandidat == null)
@@ -52,7 +52,7 @@ public class FormationService : IFormationService
 
         _mapper.Map(entity, existingCandidat);
         await _formationRepository.PutAsync(id, existingCandidat);
-        return _mapper.Map<FormationDTO>(existingCandidat);
+        return _mapper.Map<FormationGetDTO>(existingCandidat);
     }
 
     public async Task DeleteAsync(int id)
@@ -63,10 +63,10 @@ public class FormationService : IFormationService
         await _formationRepository.DeleteAsync(id);
     }
 
-    public async Task<IEnumerable<FormationDTO>> CreateRangeAsync(IEnumerable<FormationCreateDTO> entities)
+    public async Task<IEnumerable<FormationGetDTO>> CreateRangeAsync(IEnumerable<FormationCreateDTO> entities)
     {
         var Entities = _mapper.Map<IEnumerable<Formation>>(entities);
         var createdEntity = await _formationRepository.PostRangeAsync(Entities);
-        return _mapper.Map<IEnumerable<FormationDTO>>(createdEntity);
+        return _mapper.Map<IEnumerable<FormationGetDTO>>(createdEntity);
     }
 }

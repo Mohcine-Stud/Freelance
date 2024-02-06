@@ -9,11 +9,13 @@ namespace Freelance.Application.Services.Condidate.CandidatService
     {
 
         private readonly IGenericRepository<Candidat> _condidateRepository;
+        private readonly ICondidatRepository _condidateRepositoryTwo;
         private readonly IMapper _mapper;
 
-        public CandidatService(IGenericRepository<Candidat> condidateRepository, IMapper mapper)
+        public CandidatService(IGenericRepository<Candidat> condidateRepository, IMapper mapper, ICondidatRepository condidateRepositoryTwo)
         {
             _condidateRepository = condidateRepository;
+            _condidateRepositoryTwo = condidateRepositoryTwo;
             _mapper = mapper;
         }
 
@@ -53,6 +55,11 @@ namespace Freelance.Application.Services.Condidate.CandidatService
             if (existingCandidat == null)
                 return;
             await _condidateRepository.DeleteAsync(id);
+        }
+
+        public async Task<Candidat> GetCandidatWithDetailsAsync(int candidatId)
+        {
+            return await _condidateRepositoryTwo.GetCandidatWithDetailsAsync(candidatId);
         }
     }
 }

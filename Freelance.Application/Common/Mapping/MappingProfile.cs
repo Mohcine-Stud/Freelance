@@ -37,7 +37,7 @@ public class MappingProfile : Profile
         CreateMap<CompetenceOffre, CompetenceOffreCreateDTO>().ReverseMap();
 
         //CondidatComp
-        CreateMap<CondidatComp, CondidatCompDTO>().ReverseMap();
+        CreateMap<CondidatComp, CondidatCompGetDTO>().ReverseMap();
         CreateMap<CondidatComp, CondidatCompUpdateDTO>().ReverseMap();
         CreateMap<CondidatComp, CondidatCompCreateDTO>().ReverseMap();
 
@@ -62,12 +62,12 @@ public class MappingProfile : Profile
         CreateMap<Entreprise, EntrepriseCreateDTO>().ReverseMap();
 
         // Experience
-        CreateMap<Experience, ExperienceDTO>().ReverseMap();
+        CreateMap<Experience, ExperienceGetDTO>().ReverseMap();
         CreateMap<Experience, ExperienceUpdateDTO>().ReverseMap();
         CreateMap<Experience, ExperienceCreateDTO>().ReverseMap();
 
         // Formation
-        CreateMap<Formation, FormationDTO>().ReverseMap();
+        CreateMap<Formation, FormationGetDTO>().ReverseMap();
         CreateMap<Formation, FormationUpdateDTO>().ReverseMap();
         CreateMap<Formation, FormationCreateDTO>().ReverseMap();
 
@@ -82,7 +82,7 @@ public class MappingProfile : Profile
         CreateMap<Offre, OffreCreateDTO>().ReverseMap();
 
         // Projet
-        CreateMap<Projet, ProjetDTO>().ReverseMap();
+        CreateMap<Projet, ProjetGetDTO>().ReverseMap();
         CreateMap<Projet, ProjetUpdateDTO>().ReverseMap();
         CreateMap<Projet, ProjetCreateDTO>().ReverseMap();
     }
