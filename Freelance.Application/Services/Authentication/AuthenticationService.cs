@@ -19,14 +19,11 @@ namespace Freelance.Application.Services.Authentication;
 public class AuthenticationService : IAuthenticationService
 {
     private readonly IGenericRepository<Candidat> _condidatRepository;
+    private readonly IGenericRepository<Entreprise> _entrepriseRepository;
     private readonly UserManager<IdentityUser> _userManager;
     private readonly RoleManager<IdentityRole> _roleManager;
     private readonly IJwtTokenGenerator _jwtTokenGenerator;
-    private readonly ICandidateService _candidateService;
-    private readonly IProjetService _projetService;
-    private readonly IFormationService _formationService;
-    private readonly IExperienceService _experienceService;
-    private readonly ICondidatCompService _condidatCompService;
+
 
 
 
@@ -34,18 +31,21 @@ public class AuthenticationService : IAuthenticationService
         UserManager<IdentityUser> userManager,
         RoleManager<IdentityRole> roleManager,
         IJwtTokenGenerator jwtTokenGenerator,
-        IGenericRepository<Candidat> condidateRepository)
+        IGenericRepository<Candidat> condidateRepository,
+        IGenericRepository<Entreprise> entrepriseRepository)
     {
         _userManager = userManager;
         _roleManager = roleManager;
         _jwtTokenGenerator = jwtTokenGenerator;
         _condidatRepository = condidateRepository;
+        _entrepriseRepository = entrepriseRepository;
     }
 
     public async Task<AuthenticationResponse> Login(LoginQuery query)
     {
         var user = await _userManager.FindByEmailAsync(query.Email);
-
+        var registredUserId = 0;
+        
         if (user is null || !await _userManager.CheckPasswordAsync(user, query.Password))
         {
             return new AuthenticationResponse
@@ -54,19 +54,45 @@ public class AuthenticationService : IAuthenticationService
             };
         }
 
+
+        //get roles
+        var roles = (List<string>)await _userManager.GetRolesAsync(user);
+
+        // search for the user id
+        var identityUser = user.Id;
+        var allRegistredCandidats = await _condidatRepository.GetAllAsync();
+        var registredCandidat = allRegistredCandidats.FirstOrDefault(c => c.ApplicationUserId == identityUser);
+
+        var allRegistredEntreprises = await _entrepriseRepository.GetAllAsync();
+        var registredEntreprise = allRegistredEntreprises.FirstOrDefault(c => c.ApplicationUserId == identityUser);
+
+        if (registredCandidat != null)
+        {
+            registredUserId = registredCandidat.Id;
+        }
+        else if (registredEntreprise != null)
+        {
+            registredUserId = registredEntreprise.Id;
+        }
+
+
+
+
+
+        //generate token
         var tokenParams = new GenerateTokenParams
         {
             FirstName = user.UserName,
             Email = user.Email,
         };
 
-        //generate token
         var token = await _jwtTokenGenerator.GenerateToken(tokenParams);
 
         return new AuthenticationResponse
         {
-            FirstName = user.UserName,
-            LastName = user.UserName,
+            Id = registredUserId,
+            FirstName = registredCandidat.FirstName??user.UserName,
+            LastName = registredCandidat.LastName?? user.UserName,
             Email = query.Email,
             ISAuthenticated = true,
             Token = token,
@@ -105,6 +131,8 @@ public class AuthenticationService : IAuthenticationService
 
             if (result.Succeeded)
             {
+                var registredUser = await _userManager.FindByEmailAsync(command.Email);
+
                 await _userManager.AddToRoleAsync(user, role);
 
                 // create candidat (mapping command to candidat to be fixed soon!)
@@ -122,6 +150,7 @@ public class AuthenticationService : IAuthenticationService
                     Mobilite = command.CandidatInfos.Mobilite,
                     Disponibilite = command.CandidatInfos.Disponibilite,
                     Ville = command.CandidatInfos.Ville,
+                    ApplicationUserId = registredUser.Id,
                     CondidatComps = command.CompetenceList.ConvertAll(
                         competence => new CondidatComp
                         {

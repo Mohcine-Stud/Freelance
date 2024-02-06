@@ -13,8 +13,8 @@ public partial class Entreprise
     public string? Adresse { get; set; }
 
     public string? Ville { get; set; }
-    //public string ApplicationUserId { get; set; }
-    //public ApplicationUser ApplicationUser { get; set; }
+    public string ApplicationUserId { get; set; }
+    public virtual ApplicationUser ApplicationUser { get; set; }
 
     public virtual ICollection<ConsultaionProfil> ConsultaionProfils { get; set; } = new List<ConsultaionProfil>();
 
