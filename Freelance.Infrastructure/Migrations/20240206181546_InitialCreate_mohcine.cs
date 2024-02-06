@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Freelance.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class inital_create : Migration
+    public partial class InitialCreate_mohcine : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -71,6 +71,9 @@ namespace Freelance.Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Titre = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Gender = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Avatar = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -451,9 +454,9 @@ namespace Freelance.Infrastructure.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "314c6e1c-0be4-4972-a877-734c527e9897", "1", "Admin", "ADMIN" },
-                    { "bc3ddeab-fe2b-4d31-8905-aedda83f14e3", "2", "Candidat", "CANDIDAT" },
-                    { "cd43b522-df06-4911-9b13-d1051530fa5e", "3", "Entreprise", "ENTREPRISE" }
+                    { "220edbd9-d32e-466e-a825-c748a26c992d", "2", "Candidat", "CANDIDAT" },
+                    { "5c2e1387-3821-418c-af9a-e2c7da633ae7", "3", "Entreprise", "ENTREPRISE" },
+                    { "7ade529e-d6e8-44fb-b310-a5a41e47b511", "1", "Admin", "ADMIN" }
                 });
 
             migrationBuilder.CreateIndex(

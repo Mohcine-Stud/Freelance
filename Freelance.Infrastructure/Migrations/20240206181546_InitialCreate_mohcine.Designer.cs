@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Freelance.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240206145915_inital_create")]
-    partial class inital_create
+    [Migration("20240206181546_InitialCreate_mohcine")]
+    partial class InitialCreate_mohcine
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -45,7 +45,16 @@ namespace Freelance.Infrastructure.Migrations
                     b.Property<string>("Disponibilite")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Gender")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Mobilite")
@@ -450,21 +459,21 @@ namespace Freelance.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "314c6e1c-0be4-4972-a877-734c527e9897",
+                            Id = "7ade529e-d6e8-44fb-b310-a5a41e47b511",
                             ConcurrencyStamp = "1",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "bc3ddeab-fe2b-4d31-8905-aedda83f14e3",
+                            Id = "220edbd9-d32e-466e-a825-c748a26c992d",
                             ConcurrencyStamp = "2",
                             Name = "Candidat",
                             NormalizedName = "CANDIDAT"
                         },
                         new
                         {
-                            Id = "cd43b522-df06-4911-9b13-d1051530fa5e",
+                            Id = "5c2e1387-3821-418c-af9a-e2c7da633ae7",
                             ConcurrencyStamp = "3",
                             Name = "Entreprise",
                             NormalizedName = "ENTREPRISE"
