@@ -17,11 +17,11 @@ namespace Freelance.Application.Services.Condidate.ProjetService
             _projectService = projectService;
         }
 
-        public async Task<ProjetDTO> CreateAsync(ProjetCreateDTO entity)
+        public async Task<ProjetGetDTO> CreateAsync(ProjetCreateDTO entity)
         {
             var competenceDmExpertise = _mapper.Map<Projet>(entity);
             var createdcompetenceDm = await _projectService.PostAsync(competenceDmExpertise);
-            return _mapper.Map<ProjetDTO>(createdcompetenceDm);
+            return _mapper.Map<ProjetGetDTO>(createdcompetenceDm);
         }
 
         public async Task DeleteAsync(int id)
@@ -32,19 +32,19 @@ namespace Freelance.Application.Services.Condidate.ProjetService
             await _projectService.DeleteAsync(id);
         }
 
-        public async Task<List<ProjetDTO>> FindAllAsync()
+        public async Task<List<ProjetGetDTO>> FindAllAsync()
         {
             var competenceDmExpertise = await _projectService.GetAllAsync();
-            return _mapper.Map<List<ProjetDTO>>(competenceDmExpertise);
+            return _mapper.Map<List<ProjetGetDTO>>(competenceDmExpertise);
         }
 
-        public async Task<ProjetDTO> FindByIdAsync(int id)
+        public async Task<ProjetGetDTO> FindByIdAsync(int id)
         {
             var competenceDmExpertise = await _projectService.GetAsync(id);
-            return _mapper.Map<ProjetDTO>(competenceDmExpertise);
+            return _mapper.Map<ProjetGetDTO>(competenceDmExpertise);
         }
 
-        public async Task<ProjetDTO> UpdateAsync(int id, ProjetUpdateDTO entity)
+        public async Task<ProjetGetDTO> UpdateAsync(int id, ProjetUpdateDTO entity)
         {
             var existingcompetenceDm = await _projectService.GetAsync(id);
             if (existingcompetenceDm == null)
@@ -52,14 +52,14 @@ namespace Freelance.Application.Services.Condidate.ProjetService
 
             _mapper.Map(entity, existingcompetenceDm);
             await _projectService.PutAsync(id, existingcompetenceDm);
-            return _mapper.Map<ProjetDTO>(existingcompetenceDm);
+            return _mapper.Map<ProjetGetDTO>(existingcompetenceDm);
         }
 
-        public async Task<IEnumerable<ProjetDTO>> CreateRangeAsync(IEnumerable<ProjetCreateDTO> entities)
+        public async Task<IEnumerable<ProjetGetDTO>> CreateRangeAsync(IEnumerable<ProjetCreateDTO> entities)
         {
             var Entities = _mapper.Map<IEnumerable<Projet>>(entities);
             var createdEntity = await _projectService.PostRangeAsync(Entities);
-            return _mapper.Map<IEnumerable<ProjetDTO>>(createdEntity);
+            return _mapper.Map<IEnumerable<ProjetGetDTO>>(createdEntity);
         }
     }
 }

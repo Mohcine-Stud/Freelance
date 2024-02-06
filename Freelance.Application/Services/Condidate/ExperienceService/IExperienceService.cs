@@ -10,10 +10,10 @@ namespace Freelance.Application.Services.Condidate.ExperienceService;
 
 public interface IExperienceService
 {
-    Task<ExperienceDTO> FindByIdAsync(int id);
-    Task<List<ExperienceDTO>> FindAllAsync();
-    Task<ExperienceDTO> CreateAsync(ExperienceCreateDTO entity);
-    Task<IEnumerable<ExperienceDTO>> CreateRangeAsync(IEnumerable<ExperienceCreateDTO> entities);
-    Task<ExperienceDTO> UpdateAsync(int id, ExperienceUpdateDTO entity);
+    Task<ExperienceGetDTO> FindByIdAsync(int id);
+    Task<List<ExperienceGetDTO>> FindAllAsync();
+    Task<ExperienceGetDTO> CreateAsync(ExperienceCreateDTO entity);
+    Task<IEnumerable<ExperienceGetDTO>> CreateRangeAsync(IEnumerable<ExperienceCreateDTO> entities);
+    Task<ExperienceGetDTO> UpdateAsync(int id, ExperienceUpdateDTO entity);
     Task DeleteAsync(int id);
 }

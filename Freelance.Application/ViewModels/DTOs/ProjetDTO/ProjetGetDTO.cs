@@ -2,7 +2,7 @@
 
 namespace Freelance.Application.ViewModels.DTOs.ProjetDTO;
 
-public partial class ProjetDTO
+public partial class ProjetGetDTO
 {
     public int Id { get; set; }
 

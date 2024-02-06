@@ -2,7 +2,7 @@
 
 namespace Freelance.Application.ViewModels.DTOs.ExperienceDTO;
 
-public partial class ExperienceDTO
+public partial class ExperienceGetDTO
 {
     public int Id { get; set; }
 

@@ -3,7 +3,7 @@ using Freelance.Domain.Models;
 
 namespace Freelance.Application.ViewModels.DTOs.CondidatCompDTO;
 
-public partial class CondidatCompDTO
+public partial class CondidatCompGetDTO
 {
     public int Id { get; set; }
 

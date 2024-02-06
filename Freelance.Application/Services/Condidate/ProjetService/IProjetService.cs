@@ -11,10 +11,10 @@ namespace Freelance.Application.Services.Condidate.ProjetService;
 
 public interface IProjetService
 {
-    Task<ProjetDTO> FindByIdAsync(int id);
-    Task<List<ProjetDTO>> FindAllAsync();
-    Task<ProjetDTO> CreateAsync(ProjetCreateDTO entity);
-    Task<IEnumerable<ProjetDTO>> CreateRangeAsync(IEnumerable<ProjetCreateDTO> entities);
-    Task<ProjetDTO> UpdateAsync(int id, ProjetUpdateDTO entity);
+    Task<ProjetGetDTO> FindByIdAsync(int id);
+    Task<List<ProjetGetDTO>> FindAllAsync();
+    Task<ProjetGetDTO> CreateAsync(ProjetCreateDTO entity);
+    Task<IEnumerable<ProjetGetDTO>> CreateRangeAsync(IEnumerable<ProjetCreateDTO> entities);
+    Task<ProjetGetDTO> UpdateAsync(int id, ProjetUpdateDTO entity);
     Task DeleteAsync(int id);
 }

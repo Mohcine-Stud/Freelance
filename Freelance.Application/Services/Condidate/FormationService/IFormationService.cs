@@ -10,10 +10,10 @@ namespace Freelance.Application.Services.Condidate.FormationService;
 
 public interface IFormationService
 {
-    Task<FormationDTO> FindByIdAsync(int id);
-    Task<List<FormationDTO>> FindAllAsync();
-    Task<IEnumerable<FormationDTO>> CreateRangeAsync(IEnumerable<FormationCreateDTO> entities);
-    Task<FormationDTO> CreateAsync(FormationCreateDTO entity);
-    Task<FormationDTO> UpdateAsync(int id, FormationUpdateDTO entity);
+    Task<FormationGetDTO> FindByIdAsync(int id);
+    Task<List<FormationGetDTO>> FindAllAsync();
+    Task<IEnumerable<FormationGetDTO>> CreateRangeAsync(IEnumerable<FormationCreateDTO> entities);
+    Task<FormationGetDTO> CreateAsync(FormationCreateDTO entity);
+    Task<FormationGetDTO> UpdateAsync(int id, FormationUpdateDTO entity);
     Task DeleteAsync(int id);
 }

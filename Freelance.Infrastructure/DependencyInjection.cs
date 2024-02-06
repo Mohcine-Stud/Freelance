@@ -31,7 +31,7 @@ public static class DependencyInjection
 
         // Repos
         services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-
+        services.AddScoped<ICondidatRepository, CondidateRepository >();
         return services;
     }
 }

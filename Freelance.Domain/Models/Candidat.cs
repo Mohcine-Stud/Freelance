@@ -1,4 +1,6 @@
-﻿namespace Freelance.Domain.Models;
+﻿using System.Text.Json.Serialization;
+
+namespace Freelance.Domain.Models;
 
 public  partial class Candidat
 {
@@ -25,14 +27,17 @@ public  partial class Candidat
     public string ApplicationUserId { get; set; }
     public virtual ApplicationUser ApplicationUser { get; set; }
 
+    [JsonIgnore]
     public virtual ICollection<CondidatComp> CondidatComps { get; set; } = new List<CondidatComp>();
-
+    [JsonIgnore]
     public virtual ICollection<ConsultaionProfil> ConsultaionProfils { get; set; } = new List<ConsultaionProfil>();
-
+    [JsonIgnore]
     public virtual ICollection<Experience> Experiences { get; set; } = new List<Experience>();
+    [JsonIgnore]
     public virtual ICollection<Formation> Formations { get; set; } = new List<Formation>();
+    [JsonIgnore]
     public virtual ICollection<Messagerie> Messageries { get; set; } = new List<Messagerie>();
-
+    [JsonIgnore]
     public virtual ICollection<Projet> Projets { get; set; } = new List<Projet>();
     public Candidat() { }
 
