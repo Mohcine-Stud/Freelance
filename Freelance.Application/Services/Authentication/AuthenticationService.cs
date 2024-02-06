@@ -78,6 +78,7 @@ public class AuthenticationService : IAuthenticationService
     public async Task<AuthenticationResponse> RegisterCandidat(RegisterCanidatCommand command)
     {
         var role = "CANDIDAT";
+        Candidat registredCandidat = null;
 
         if (await _userManager.FindByEmailAsync(command.Email) is not null)
         {
@@ -109,6 +110,9 @@ public class AuthenticationService : IAuthenticationService
                 // create candidat (mapping command to candidat to be fixed soon!)
                 var candidat = new Candidat
                 {
+                    FirstName = command.FirstName,
+                    LastName = command.LastName,
+                    Email = command.Email,
                     Titre = command.CandidatInfos.Titre,
                     Avatar = command.CandidatInfos.Avatar,
                     Gender = command.CandidatInfos.Gender,
@@ -155,7 +159,7 @@ public class AuthenticationService : IAuthenticationService
                 };
 
                 //persist candidat to db
-                await _condidatRepository.PostAsync(candidat);
+                registredCandidat = await _condidatRepository.PostAsync(candidat);
                 
             }
             else
@@ -190,6 +194,7 @@ public class AuthenticationService : IAuthenticationService
 
         return new AuthenticationResponse
         {
+            Id = registredCandidat.Id,
             FirstName = command.FirstName,
             LastName = command.LastName,
             Email = command.Email,

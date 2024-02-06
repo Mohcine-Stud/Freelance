@@ -42,7 +42,16 @@ namespace Freelance.Infrastructure.Migrations
                     b.Property<string>("Disponibilite")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Gender")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Mobilite")
@@ -144,13 +153,7 @@ namespace Freelance.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("CompetenceId")
-                        .HasColumnType("int");
-
                     b.Property<int?>("IdComp")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("IdCompNavigationId")
                         .HasColumnType("int");
 
                     b.Property<int?>("IdCond")
@@ -164,9 +167,7 @@ namespace Freelance.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CompetenceId");
-
-                    b.HasIndex("IdCompNavigationId");
+                    b.HasIndex("IdComp");
 
                     b.HasIndex("IdCondNavigationId");
 
@@ -455,21 +456,21 @@ namespace Freelance.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "d2bb153c-5275-4b67-a1b8-42a19ad08b3c",
+                            Id = "7ade529e-d6e8-44fb-b310-a5a41e47b511",
                             ConcurrencyStamp = "1",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "eae58efe-1a3c-4e7e-b756-2b17c1ffa939",
+                            Id = "220edbd9-d32e-466e-a825-c748a26c992d",
                             ConcurrencyStamp = "2",
                             Name = "Candidat",
                             NormalizedName = "CANDIDAT"
                         },
                         new
                         {
-                            Id = "822c0191-e47b-4826-af13-33f87f5e334a",
+                            Id = "5c2e1387-3821-418c-af9a-e2c7da633ae7",
                             ConcurrencyStamp = "3",
                             Name = "Entreprise",
                             NormalizedName = "ENTREPRISE"
@@ -681,11 +682,7 @@ namespace Freelance.Infrastructure.Migrations
                 {
                     b.HasOne("Freelance.Domain.Models.Competence", "IdCompNavigation")
                         .WithMany("CondidatComps")
-                        .HasForeignKey("CompetenceId");
-
-                    b.HasOne("Freelance.Domain.Models.ComptenceDmExpertise", "IdCompNavigation")
-                        .WithMany()
-                        .HasForeignKey("IdCompNavigationId");
+                        .HasForeignKey("IdComp");
 
                     b.HasOne("Freelance.Domain.Models.Candidat", "IdCondNavigation")
                         .WithMany("CondidatComps")
