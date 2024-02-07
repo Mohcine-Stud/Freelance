@@ -62,8 +62,8 @@ public class CandidatController : ControllerBase
             {
                 Id = c.Id,
                 Niveau = c.Niveau,
-                IdComp = cc.IdComp,
-                IdCond = cc.IdCond,
+                IdComp = c.IdComp,
+                IdCond = c.IdCond,
             }).ToList(),
 
             Experiences = candidat.Experiences.Select(exp => new ExperienceGetDTO
