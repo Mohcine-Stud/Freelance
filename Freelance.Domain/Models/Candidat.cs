@@ -24,8 +24,8 @@ public  partial class Candidat
     public string? Disponibilite { get; set; }
 
     public string? Ville { get; set; }
-    //public string ApplicationUserId { get; set; }
-    //public ApplicationUser ApplicationUser { get; set; }
+    public string ApplicationUserId { get; set; }
+    public virtual ApplicationUser ApplicationUser { get; set; }
 
     [JsonIgnore]
     public virtual ICollection<CondidatComp> CondidatComps { get; set; } = new List<CondidatComp>();
@@ -54,6 +54,7 @@ public  partial class Candidat
         string? mobilite,
         string? disponibilite,
         string? ville,
+        string? applicationUserId,
         ICollection<CondidatComp> condidatComps,
         ICollection<Experience> experiences,
         ICollection<Formation> formations, 
@@ -71,6 +72,7 @@ public  partial class Candidat
         Mobilite = mobilite;
         Disponibilite = disponibilite;
         Ville = ville;
+        ApplicationUserId = applicationUserId;
         CondidatComps = condidatComps;
         Experiences = experiences;
         Formations = formations;
