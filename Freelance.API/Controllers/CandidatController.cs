@@ -4,6 +4,7 @@ using Freelance.Application.ViewModels.DTOs.CondidateDTO;
 using Freelance.Application.ViewModels.DTOs.ExperienceDTO;
 using Freelance.Application.ViewModels.DTOs.FormationDTO;
 using Freelance.Application.ViewModels.DTOs.ProjetDTO;
+using Freelance.Domain.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -45,7 +46,17 @@ public class CandidatController : ControllerBase
         {
             Id = candidat.Id,
             FirstName = candidat.FirstName,
-            // Map other properties
+            LastName = candidat.LastName,
+            Email = candidat.Email,
+            Titre = candidat.Titre,
+            Gender = candidat.Gender,
+            Avatar = candidat.Avatar,
+            Adresse = candidat.Adresse,
+            DateNaissance = candidat.DateNaissance,
+            Tele = candidat.Tele,
+            Mobilite = candidat.Mobilite,
+            Disponibilite = candidat.Disponibilite,
+            Ville = candidat.Ville,
 
             CondidatComps = candidat.CondidatComps.Select(c => new CondidatCompGetDTO
             {
@@ -54,25 +65,37 @@ public class CandidatController : ControllerBase
                 // Map other properties
             }).ToList(),
 
-            Experiences = candidat.Experiences.Select(e => new ExperienceGetDTO
+            Experiences = candidat.Experiences.Select(exp => new ExperienceGetDTO
             {
-                Id = e.Id,
-                Titre = e.Titre,
-                // Map other properties
+                Id = exp.Id,
+                Titre = exp.Titre,
+                Local = exp.Local,
+                Description = exp.Description,
+                Ville = exp.Ville,
+                DateDebut = exp.DateDebut,
+                DateFin = exp.DateFin,
+
             }).ToList(),
 
-            Formations = candidat.Formations.Select(f => new FormationGetDTO
+            Formations = candidat.Formations.Select(form => new FormationGetDTO
             {
-                Id = f.Id,
-                Niveau = f.Niveau,
-                // Map other properties
+                Id = form.Id,
+                Niveau = form.Niveau,
+                Ecole = form.Ecole,
+                Diplome = form.Diplome,
+                Description = form.Description,
+                Ville = form.Ville,
+                DateDebut = form.DateDebut,
+                DateFin = form.DateFin,
             }).ToList(),
 
             Projets = candidat.Projets.Select(p => new ProjetGetDTO
             {
                 Id = p.Id,
                 Nom = p.Nom,
-                // Map other properties
+                Description = p.Description,
+                Link = p.Link,
+
             }).ToList(),
         };
 
@@ -84,38 +107,57 @@ public class CandidatController : ControllerBase
     {
         var candidats = await _condidateService.GetAllCandidatsWithDetailsAsync();
 
-        var candidatDtos = candidats.Select(c => new CandidatDTO
+        var candidatDtos = candidats.Select(candidat => new CandidatDTO
         {
-            Id = c.Id,
-            FirstName = c.FirstName,
-            // Map other properties
+            Id = candidat.Id,
+            FirstName = candidat.FirstName,
+            LastName = candidat.LastName,
+            Email = candidat.Email,
+            Titre = candidat.Titre,
+            Gender = candidat.Gender,
+            Avatar = candidat.Avatar,
+            Adresse = candidat.Adresse,
+            DateNaissance = candidat.DateNaissance,
+            Tele = candidat.Tele,
+            Mobilite = candidat.Mobilite,
+            Disponibilite = candidat.Disponibilite,
+            Ville = candidat.Ville,
 
-            CondidatComps = c.CondidatComps.Select(cc => new CondidatCompGetDTO
+            CondidatComps = candidat.CondidatComps.Select(cc => new CondidatCompGetDTO
             {
                 Id = cc.Id,
                 Niveau = cc.Niveau,
-                // Map other properties
             }).ToList(),
 
-            Experiences = c.Experiences.Select(e => new ExperienceGetDTO
+            Experiences = candidat.Experiences.Select(exp => new ExperienceGetDTO
             {
-                Id = e.Id,
-                Titre = e.Titre,
-                // Map other properties
+                Id = exp.Id,
+                Titre = exp.Titre,
+                Local = exp.Local,
+                Description = exp.Description,
+                Ville = exp.Ville,
+                DateDebut = exp.DateDebut,
+                DateFin = exp.DateFin,
             }).ToList(),
 
-            Formations = c.Formations.Select(f => new FormationGetDTO
+            Formations = candidat.Formations.Select(form => new FormationGetDTO
             {
-                Id = f.Id,
-                Niveau = f.Niveau,
-                // Map other properties
+                Id = form.Id,
+                Niveau = form.Niveau,
+                Ecole = form.Ecole,
+                Diplome = form.Diplome,
+                Description = form.Description,
+                Ville = form.Ville,
+                DateDebut = form.DateDebut,
+                DateFin = form.DateFin,
             }).ToList(),
 
-            Projets = c.Projets.Select(p => new ProjetGetDTO
+            Projets = candidat.Projets.Select(p => new ProjetGetDTO
             {
                 Id = p.Id,
                 Nom = p.Nom,
-                // Map other properties
+                Description = p.Description,
+                Link = p.Link,
             }).ToList(),
         }).ToList();
 
